@@ -24,5 +24,12 @@ module.exports = {
         });
 
         return response.json(challenge);
+    },
+
+    async filter(request, response) {
+        const { type } = request.params;
+        const challenges = await Challenge.find({ type });
+  
+        return response.json(challenges);
     }
 }
