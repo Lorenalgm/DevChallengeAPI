@@ -2,7 +2,14 @@ const Challenge = require('../models/Challenge');
 
 module.exports = {
     async index(request, response) {
-        const challenges = await Challenge.find();
+        const { type } = request.query;
+        let challenges = [];
+
+        if (type) {
+            challenges = await Challenge.find({ type });
+        } else {
+            challenges = await Challenge.find();
+        }
 
         return response.json(challenges);
     },
@@ -25,11 +32,4 @@ module.exports = {
 
         return response.json(challenge);
     },
-
-    async filter(request, response) {
-        const { type } = request.params;
-        const challenges = await Challenge.find({ type });
-  
-        return response.json(challenges);
-    }
 }

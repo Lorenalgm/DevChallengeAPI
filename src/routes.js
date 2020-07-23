@@ -11,7 +11,6 @@ routes.get('/challenges/:challenge_id', ChallengeDetailController.index);
 
 routes.get('/challenges', ChallengeController.index);
 routes.post('/challenges', ChallengeController.store);
-routes.get('/challenges/filter/:type', ChallengeController.filter);
 
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
