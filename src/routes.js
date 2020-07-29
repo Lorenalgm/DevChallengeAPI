@@ -15,7 +15,6 @@ routes.post('/challenges', ChallengeController.store);
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 
-
 routes.get('/newsletter', NewsletterController.index);
 routes.post('/newsletter', NewsletterController.store);
 
