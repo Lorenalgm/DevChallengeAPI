@@ -1,4 +1,5 @@
 # Instalação
+Essas instruções vão te levar a uma cópia do projeto rodando em sua máquina local para propósitos de testes e desenvolvimento.
 
 ## Pré-requisitos
 - [Node.js](https://nodejs.org/pt-br/download/) versão 12 ou superior
