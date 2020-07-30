@@ -1,30 +1,30 @@
 const Dev = require('../models/Dev');
 
 module.exports = {
-    async index(request, response) {
-        const devs = await Dev.find();
-        
-        return response.json(devs);
-    },
+  async index(request, response) {
+    const devs = await Dev.find();
 
-    async store(request, response){
-        const { name, position, bio, linkedin, github, avatar } = request.body;
+    return response.json(devs);
+  },
 
-        const useExist = await Dev.findOne({ github });
+  async store(request, response) {
+    const { name, position, bio, linkedin, github, avatar } = request.body;
 
-        if(useExist) {
-            return response.json(useExist);
-        }
+    const useExist = await Dev.findOne({ github });
 
-        const dev = await Dev.create({
-            name,
-            position,
-            bio,
-            linkedin,
-            github,
-            avatar,
-        });
-
-        return response.json(dev);
+    if (useExist) {
+      return response.json(useExist);
     }
-}
+
+    const dev = await Dev.create({
+      name,
+      position,
+      bio,
+      linkedin,
+      github,
+      avatar
+    });
+
+    return response.json(dev);
+  }
+};
