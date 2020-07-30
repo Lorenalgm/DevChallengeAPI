@@ -1,7 +1,8 @@
 require('dotenv').config({
-    path: process.env.NODE_ENV === 'production'
-        ? '.env'
-        : `.env.${process.env.NODE_ENV}`
+  path:
+    process.env.NODE_ENV === 'production'
+      ? '.env'
+      : `.env.${process.env.NODE_ENV}`
 });
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,11 +12,12 @@ const errorHandler = require('./middlewares/errorHandler');
 const routeNotFound = require('./middlewares/routeNotFound');
 
 const routes = require('./routes');
+
 const app = express();
 
 mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
 app.use(cors());
