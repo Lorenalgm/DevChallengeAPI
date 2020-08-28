@@ -78,4 +78,4 @@ $ docker-compose build && docker-compose up -d
 
 **Nota:** O servidor e a instância do MongoDB estará rodando nas portas 3001 e 3002, respectivamente.
 
-E você estará pronto para ir!
+E você está pronto para ir!
