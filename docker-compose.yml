@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  backend:
+    container_name: "devchallenge_api"
+    build:
+      context: ./
+    environment:
+      - "PORT=3333"
+    ports:
+      - "3001:3333"
+    networks:
+      - "database"
+    volumes:
+      - type: "bind"
+        source: "."
+        target: "/app"
+    depends_on:
+      - "mongodb"
+  mongodb:
+    image: "mongo"
+    container_name: "devchallenge_database"
+    volumes:
+      - "db-data:/data/db"
+    networks:
+      - "database"
+    ports:
+      - "3002:27017"
+
+networks:
+  database:
+
+volumes:
+  db-data:
