@@ -16,6 +16,6 @@ module.exports = {
   },
 
   create(challengeData) {
-    return Challegenge.create(challengeData);
+    return Challenge.create(challengeData);
   }
 }
