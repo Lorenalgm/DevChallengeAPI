@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon src/bin/server.js",
     "lint": "eslint src --ext js",
-    "start": "node src/bin/server.js"
+    "start": "node src/bin/server.js",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.19.2",
