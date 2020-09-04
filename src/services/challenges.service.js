@@ -10,12 +10,10 @@ module.exports = {
   },
 
   fetchById(challengeId) {
-    return Challenge
-      .findById(challengeId)
-      .populate('dev_id');
+    return Challenge.findById(challengeId).populate('dev_id');
   },
 
   create(challengeData) {
     return Challenge.create(challengeData);
   }
-}
+};

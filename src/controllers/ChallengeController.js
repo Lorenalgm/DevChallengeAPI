@@ -18,9 +18,9 @@ module.exports = {
       techs,
       background,
       images,
-      github_url,
+      github_url: githubUrl,
       brief,
-      dev_id
+      dev_id: devId
     } = request.body;
 
     const challenge = await challengesService.create({
@@ -31,18 +31,18 @@ module.exports = {
       techs,
       background,
       images,
-      github_url,
+      github_url: githubUrl,
       brief,
-      dev_id
+      dev_id: devId
     });
 
     return response.json(challenge);
   },
 
   async show(request, response) {
-    const { challenge_id } = request.params;
+    const { challenge_id: id } = request.params;
 
-    const challenge = await challengesService.fetchById(challenge_id);
+    const challenge = await challengesService.fetchById(id);
 
     return response.json(challenge);
   }
