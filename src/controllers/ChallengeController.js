@@ -1,15 +1,10 @@
-const Challenge = require('../models/Challenge');
+const { challengesService } = require('../services');
 
 module.exports = {
   async index(request, response) {
     const { type } = request.query;
-    let challenges = [];
 
-    if (type) {
-      challenges = await Challenge.find({ type });
-    } else {
-      challenges = await Challenge.find();
-    }
+    const challenges = await challengesService.fetchAll(type);
 
     return response.json(challenges);
   },
@@ -23,12 +18,12 @@ module.exports = {
       techs,
       background,
       images,
-      github_url,
+      github_url: githubUrl,
       brief,
-      dev_id
+      dev_id: devId
     } = request.body;
 
-    const challenge = await Challenge.create({
+    const challenge = await challengesService.create({
       type,
       name,
       description,
@@ -36,20 +31,18 @@ module.exports = {
       techs,
       background,
       images,
-      github_url,
+      github_url: githubUrl,
       brief,
-      dev_id
+      dev_id: devId
     });
 
     return response.json(challenge);
   },
 
   async show(request, response) {
-    const { challenge_id } = request.params;
+    const { challenge_id: id } = request.params;
 
-    const challenge = await Challenge.find({ _id: challenge_id }).populate(
-      'dev_id'
-    );
+    const challenge = await challengesService.fetchById(id);
 
     return response.json(challenge);
   }
