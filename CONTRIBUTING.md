@@ -34,26 +34,39 @@ O DevChallenge oferece quatro opções de Issues com seus respectivos templates.
 <details>
 <summary>Quero reportar um bug</summary>
 <br>
-:construction: WIP
+Use essa categoria para reportar uma anomalia no comportamento do software.
+<br><br>
+Caso tenha tempo e saiba como corrigir o erro, sinta-se livre para fazer uma pull request.
+<br><br>
+</details>
+
+<details>
+<summary>Quero solicitar uma alteração na documentação</summary>
+<br>
+Caso a documentação não seja clara, seja muito complicada, esteja desatualizada ou seja insuficiente, submeta uma issue nessa categoria.
+<br><br>
+Caso tenha tempo e possa corrigir, sinta-se livre para fazer uma pull request.
+<br><br>
 </details>
 
 <details>
 <summary>Quero sugerir uma funcionalidade</summary>
 <br>
-:construction: WIP
-</details>
-
-<details>
-<summary>Quero solicitar um desafio</summary>
-<br>
-:construction: WIP
+Para sugerir novas funcionalidades dentro da plataforma, sinta-se à vontade para submeter uma nova issue nessa categoria!
+<br><br>
+Fique à vontade para contribuir com um Pull Request caso tenha tempo e queira.
+<br><br>
 </details>
 
 <details>
 <summary>Quero algo que não se encaixa na lista acima</summary>
 <br>
-:construction: WIP
+Pode ocorrer que o seu problema não se encaixa nas categorias já citadas. Neste caso, submeta aqui.
+<br><br>
 </details>
+
+<br>
+Lembre-se de ser específico ao descrever uma Issue.
 
 ### Pull Requests
 
@@ -69,18 +82,15 @@ Não se preocupe se nem todos os testes passarem. Você tem todo o direito de su
 Corrigir estado incorreto do módulo SkyNet
 <br><br>
 Há um problema onde algumas IAs estão ganhando uma consciência maligna. O problema pode ser corrigido apenas com o código abaixo:
+<br><br>
 
-\```js
-  <br>
+```js
   // skynet-core.js
-  <br><br>
+
   if (evil) {
-    <br>
     dont();
-    <br>
   }
-  <br>
-\```
+```
 
 **Check-list:**<br>
 \- [x] A Pull Request soluciona uma issue.<br>
@@ -105,4 +115,4 @@ Fix #21
 
 ### Sugestão de desafios
 
-:construction: WIP
+Gostaria de submeter um novo desafio? Por favor, [clique aqui](https://lgoesmontes.typeform.com/to/xKHESI) para ser levado ao formulário de submissão.

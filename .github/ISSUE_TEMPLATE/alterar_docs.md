@@ -1,6 +1,6 @@
 ---
-name: Funcionalidade
-about: Sugerir uma nova funcionalidade para nos ajudar a melhorar
+name: Documentação
+about: Documentação não está clara, atualizada ou é insuficiente
 title: ''
 labels: ''
 assignees: ''
