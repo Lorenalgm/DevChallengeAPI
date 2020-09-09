@@ -112,6 +112,8 @@ Gostaria de contribuir com o projeto? Acesse [CONTRIBUTING.md](CONTRIBUTING.md) 
 
 - **Lorena Montes** - *Trabalho inicial* - [Lorenalgm](https://github.com/Lorenalgm)
 
+Veja também a lista de [contribuidores](https://devchallenge.now.sh/devs) que ajudaram no projeto!
+
 ## Licença
 
 Este projeto é licenciado sob a Licença MIT - veja [LICENSE.md](LICENSE.md) para detalhes.
