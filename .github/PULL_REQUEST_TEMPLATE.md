@@ -1,24 +1,32 @@
 <!--
-Thanks for wanting to fix something on Sequelize - we already love you!
-Please fill in the template below.
-If unsure about something, just do as best as you're able.
+Obrigado por querer contribuir com o DevChallenge!
+Por favor, preencha a check-list disponibilizada abaixo.
 
-If your PR only contains changes to documentation, you may skip the template below.
+Se sua Pull Request conter apenas mudanças na documentação, desconsidere a check-list abaixo.
+
+Quaisquer dúvidas que tenha, não hesite falar com um contribuidor ou em perguntar em nossa comunidade no Discord: https://discord.gg/yvYXhGj
 -->
 
-### Pull Request check-list
+<!--
+Substitua a frase abaixo de acordo com o contexto:
+-->
+(Uma breve descrição das alterações. O que você está solucionando?)
 
-_Please make sure to review and check all of these items:_
+<!--
+(Um texto mais explanatório e detalhado sobre o porque dessas alterações serem necessárias.
 
-- [ ] Does `npm run test` or `npm run test-DIALECT` pass with this change (including linting)?
-- [ ] Does the description below contain a link to an existing issue (Closes #[issue]) or a description of the issue you are solving?
-- [ ] Have you added new tests to prevent regressions?
-- [ ] Is a documentation update included (if this change modifies existing APIs, or introduces new ones)?
-- [ ] Did you update the typescript typings accordingly (if applicable)?
-- [ ] Did you follow the commit message conventions explained in [CONTRIBUTING.md](https://github.com/sequelize/sequelize/blob/master/CONTRIBUTING.md)?
+É preferível que se o motivo da alteração seja priorizado ao invés do método utilizado, mas sinta-se à vontade para detalhar como o código foi mudado.)
+-->
 
-<!-- NOTE: these things are not required to open a PR and can be done afterwards / while the PR is open. -->
+**Check-list:**
+- [ ] A Pull Request soluciona uma issue.
+- [ ] Executar `npm run test` passará todos as suítes de testes definidas (Incluindo lint).
+- [ ] Adicionei novos testes para previnir falhas.
+- [ ] Atualizei a documentação de acordo com as alterações no código (Se aplicável).
+- [ ] Li e segui o [guia de contribuição](https://github.com/Lorenalgm/DevChallengeAPI/blob/master/CONTRIBUTING.md) disponibilizado.
 
-### Description of change
+<!--
+(Se aplicável, qual issue essa PR está solucionando? Vincule a issue abaixo com "Fix #[nº da issue]"
 
-<!-- Please provide a description of the change here. -->
+  Ex.: Fix #29)
+-->
