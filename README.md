@@ -59,6 +59,7 @@ cd DevChallengeAPI
 #### Pré-requisitos
 
 - [Node.js](https://nodejs.org/pt-br/) versão 12 ou superior
+- Um gerenciador de dependências - Yarn ou NPM
 - Uma instância local ou um cluster do [MongoDB](https://www.mongodb.com/)
 
 #### Instalando dependências
@@ -67,13 +68,27 @@ cd DevChallengeAPI
 npm install
 ```
 
+ou
+
+```bash
+yarn
+```
+
 #### Inicializando uma instância local
 
 ```bash
 npm run dev
 ```
 
+ou
+
+```bash
+yarn dev
+```
+
 ### Instalação com Docker
+
+Caso prefira inicializar um ambiente de desenvolvimento com Docker, temos um arquivo `docker-compose.yml` preparado com as configurações necessárias.
 
 #### Pré-requisitos
 
@@ -81,6 +96,7 @@ npm run dev
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 #### Inicializando os contêineres
+
 ```bash
 docker-compose build && docker-compose up -d
 ```
