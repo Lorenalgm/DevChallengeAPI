@@ -65,9 +65,9 @@ Não se preocupe se nem todos os testes passarem. Você tem todo o direito de su
 
 <details>
 <summary>Exemplo com preenchimento da check-list</summary>
-
+<br>
 Corrigir estado incorreto do módulo SkyNet
-
+<br>
 Há um problema onde algumas IAs estão ganhando uma consciência maligna. O problema pode ser corrigido apenas com o código abaixo:
 
 \```js
@@ -94,9 +94,9 @@ Fix #29
 
 <details>
 <summary>Exemplo sem a check-list</summary>
-
+<br>
 Corrigir erro de digitação no guia de instalação
-
+<br>
 Alguns desenvolvedores estavam reportando problemas para instalar devido ao erro.
 
 Fix #14
