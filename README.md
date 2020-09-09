@@ -16,7 +16,6 @@
 
 ## Tabela de conteúdos
 
-- [Tabela de conteúdos](#tabela-de-conteúdos)
 - [Sobre](#sobre)
 - [Feito com](#feito-com)
 - [Para começar](#para-começar)
