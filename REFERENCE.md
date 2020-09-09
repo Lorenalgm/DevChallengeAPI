@@ -32,7 +32,7 @@ Retorna um Array dos objetos de desafios.
 
 #### Exemplo de resposta
 
-```json
+```
 [
   {
     "techs": [String],
@@ -90,7 +90,7 @@ Retorna o objeto do desafio criado.
 
 #### Exemplo de resposta
 
-```json
+```
 {
   "techs": [String],
   "images": [String],
@@ -133,7 +133,7 @@ Retorna os dados do desafio.
 
 #### Exemplo de resposta
 
-```json
+```
 {
     "techs": [String],
     "images": [String],
