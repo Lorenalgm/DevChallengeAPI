@@ -71,19 +71,23 @@ Corrigir estado incorreto do módulo SkyNet
 Há um problema onde algumas IAs estão ganhando uma consciência maligna. O problema pode ser corrigido apenas com o código abaixo:
 
 \```js
+  <br>
   // skynet-core.js
-
+  <br>
   if (evil) {
+    <br>
     dont();
+    <br>
   }
+  <br>
 \```
 
-**Check-list:**
-\- [x] A Pull Request soluciona uma issue.
-\- [x] Executar \`npm run test\` passará todas as suítes de testes definidas (Incluindo lint).
-\- [ ] Adicionei novos testes para previnir falhas.
-\- [ ] Atualizei a documentação de acordo com as alterações no código (Se aplicável).
-\- [x] Li e segui o guia de contribuição disponibilizado.
+**Check-list:**<br>
+\- [x] A Pull Request soluciona uma issue.<br>
+\- [x] Executar \`npm run test\` passará todas as suítes de testes definidas (Incluindo lint).<br>
+\- [ ] Adicionei novos testes para previnir falhas.<br>
+\- [ ] Atualizei a documentação de acordo com as alterações no código (Se aplicável).<br>
+\- [x] Li e segui o guia de contribuição disponibilizado.<br>
 
 Fix #29
 </details>
