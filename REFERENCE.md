@@ -1,6 +1,7 @@
 # Referência de API
 
 ## Tabela de conteúdos
+
 - [Desafios](#desafios)
 - [Desenvolvedores](#desenvolvedores)
 - [Newsletter](#newsletter)
@@ -26,6 +27,7 @@ Listar todos desafios; Filtrar desafios por categoria.
 | `type` | Categoria do desafio | `query` | `String` | Não |
 
 **URL de Requisição**
+
 > https://devchallengeapi.herokuapp.com/challenges[?type=[challenge_type]]
 
 Retorna um Array dos objetos de desafios.
@@ -84,6 +86,7 @@ Criar um novo desafio.
 | `dev_id` | Submissor do desafio | `body` | `String` | Sim |
 
 **URL de Requisição**
+
 > https://devchallengeapi.herokuapp.com/challenges
 
 Retorna o objeto do desafio criado.
@@ -127,6 +130,7 @@ Buscar desafio por ID.
 | `challenge_id` | UUID do desafio | `path` | `String` | Não |
 
 **URL de Requisição**
+
 > https://devchallengeapi.herokuapp.com/challenges/:challenge_id
 
 Retorna os dados do desafio.
@@ -167,10 +171,129 @@ Retorna os dados do desafio.
 
 Utilize a API de desenvolvedores quando precisar recuperar a lista de contribuidores do projeto.
 
-:construction: WIP
+<details>
+<summary style="font-size:24px;color:black"><b>GET: /devs</b></summary>
+
+#### Função
+
+Listar contribuidores e suas redes.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| - | - | - | - | - |
+
+**URL de Requisição**
+
+> https://devchallengeapi.herokuapp.com/devs
+
+Retorna uma array de objetos de contribuidores
+
+#### Exemplo de resposta
+
+```
+[
+  {
+    "_id": String,
+    "name": String,
+    "position": String,
+    "bio": String,
+    "linkedin": String,
+    "github": String,
+    "avatar": String,
+    "createdAt": Date,
+    "updatedAt": Date,
+  },
+  {...},
+  {...}
+]
+
+```
+
+</details>
+
+<details>
+<summary style="font-size:24px;color:black"><b>POST: /devs</b></summary>
+
+#### Função
+
+Criar um contribuidor.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `name` | Nome do contribuidor | `body` | `String` | Sim |
+| `position` | Cargo do contribuidor | `body` | `String` | Sim |
+| `bio` | Biografia do contribuidor | `body` | `String` | Sim |
+| `linkedin` | URL do perfil do Linkedin do contribuidor | `body` | `String` | Sim |
+| `github` | URL do perfil do Github do contribuidor | `body` | `String` | Sim |
+| `avatar` | URL do avatar do Github do contribuidor | `body` | `String` | Sim |
+
+**URL de Requisição**
+
+> https://devchallengeapi.herokuapp.com/devs
+
+Retorna objeto contribuidor criado.
+
+#### Exemplo de resposta
+
+```
+{
+  "_id": String,
+  "name": String,
+  "position": String,
+  "bio": String,
+  "linkedin": String,
+  "github": String,
+  "avatar": String,
+  "createdAt": Date,
+  "updatedAt": Date,
+}
+```
+
+</details>
 
 ## API de Newsletter
 
 Utilize a API de Newsletter quando quiser assinar ou cancelar uma assinatura semanal.
 
-:construction: WIP
+<details>
+<summary style="font-size:24px;color:black"><b>GET: /newsletter</b></summary>
+
+#### Função
+
+Listar assinantes da newsletter.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| - | - | - | - | - |
+
+**URL de Requisição**
+
+> https://devchallengeapi.herokuapp.com/newsletter
+
+Retorna um array de objetos de assinantes
+
+#### Exemplo de resposta
+
+```
+[
+  {
+    "_id": String,
+    "email": String,
+    "createdAt": Date,
+    "updatedAt": Date,
+  },
+  {...},
+  {...}
+]
+```
+
+</details>
