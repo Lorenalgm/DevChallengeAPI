@@ -116,8 +116,6 @@ Retorna o objeto do desafio criado.
 <details>
 <summary style="font-size:24px;color:black"><b>GET: /challenges/:id</b></summary>
 
-> Content-Type: application/json
-
 #### Função
 
 Buscar desafio por ID.
@@ -216,6 +214,8 @@ Retorna uma array de objetos de contribuidores
 
 <details>
 <summary style="font-size:24px;color:black"><b>POST: /devs</b></summary>
+
+> Content-Type: application/json
 
 #### Função
 
