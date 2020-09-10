@@ -1,6 +1,7 @@
 # Referência de API
 
 ## Tabela de conteúdos
+
 - [Desafios](#desafios)
 - [Desenvolvedores](#desenvolvedores)
 - [Newsletter](#newsletter)
@@ -26,6 +27,7 @@ Listar todos desafios; Filtrar desafios por categoria.
 | `type` | Categoria do desafio | `query` | `String` | Não |
 
 **URL de Requisição**
+
 > https://devchallengeapi.herokuapp.com/challenges[?type=[challenge_type]]
 
 Retorna um Array dos objetos de desafios.
@@ -84,6 +86,7 @@ Criar um novo desafio.
 | `dev_id` | Submissor do desafio | `body` | `String` | Sim |
 
 **URL de Requisição**
+
 > https://devchallengeapi.herokuapp.com/challenges
 
 Retorna o objeto do desafio criado.
@@ -127,6 +130,7 @@ Buscar desafio por ID.
 | `challenge_id` | UUID do desafio | `path` | `String` | Não |
 
 **URL de Requisição**
+
 > https://devchallengeapi.herokuapp.com/challenges/:challenge_id
 
 Retorna os dados do desafio.
