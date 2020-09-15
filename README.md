@@ -1,100 +1,131 @@
+
+<div align="center">
+  <a href="https://devchallenge.now.sh/">
+    <img src="https://trello-attachments.s3.amazonaws.com/590fa896d2d25e50583de620/500x500/0bdcc819ea145cb0167619c6d00f2174/D.png" alt="Logo" width="100" height="100">
+  </a>
+  <h1>DevChallenge RESTful API</h1>
+  <br>
+  <p><b>Melhore suas habilidades através de desafios de front-end, back-end e mobile!</b></p>
+  <sub>Procurando pelo repositório do aplicativo web? Acesse <a href="https://github.com/Lorenalgm/DevChallengeAPI">aqui</a>!</sub>
+  <br>
+</div>
+
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-<br />
-<p align="center">
-    <a href="https://devchallenge.now.sh/">
-    <img src="https://trello-attachments.s3.amazonaws.com/590fa896d2d25e50583de620/500x500/0bdcc819ea145cb0167619c6d00f2174/D.png" alt="Logo" width="100" height="100">
-  </a>
-  
-  <h3 align="center">DevChallenge API</h3>
+## Tabela de conteúdos
 
-  <p align="center">
-    Site para desenvolvedores melhorarem suas habilidades através de desafios de front-end, back-end e mobile!<br><br>
-    A website for developers to improve their skills by doing front-end and back-end challenges
-       <br />
-    <br />
-     <a href="https://devchallenge.now.sh/">DevChallenge</a>    
-  </p>
-  
-<p align="center">
-<img src="https://trello-attachments.s3.amazonaws.com/590fa7f5a8ab015d0cf88052/590fa896d2d25e50583de620/0cba4e38c63264f8b7e2fd027e8e87ee/devmockup_(1).png" width="580" height="380">
-</p>
+- [Sobre](#sobre)
+- [Feito com](#feito-com)
+- [Para começar](#para-começar)
+  - [Instalação padrão](#instalação-padrão)
+    - [Pré-requisitos](#pré-requisitos)
+    - [Instalando dependências](#instalando-dependências)
+    - [Inicializando uma instância local](#inicializando-uma-instância-local)
+  - [Instalação com Docker](#instalação-com-docker)
+    - [Pré-requisitos](#pré-requisitos-1)
+    - [Inicializando os contêineres](#inicializando-os-contêineres)
+- [Referência de API](#referência-de-api)
+- [Como contribuir](#como-contribuir)
+- [Autores](#autores)
+- [Licença](#licença)
+- [Nossa comunidade](#nossa-comunidade)
 
-## Índice
+## Sobre
 
-* [Sobre o Projeto](#sobre-o-projeto)
-  * [Demo](#demo)
-  * [Tecnologias](#tecnologias)
-* [Como Utilizar](#como-utilizar)
-* [Como Contribuir](#como-contribuir)
-  * [Requisitos](#requisitos)
-  * [Backend](#backend)
-* [Comunidade](#comunidade)
+O DevChallenge é um projeto que visa contrubuir com a evolução de desenvolvedores, disponibilizando desafios para que possam praticar, melhorar suas skills e criarem seus portfólios.
 
-## Sobre o Projeto
-O DevChallenge é um projeto que visa contrubuir com a evolução de desenvolvedores, disponibilizando desafios para que possam praticar, melhorar suas skills e criarem seus portfólios :)
+## Feito com
 
-### Demo:
-<p align="center">
-<img src="https://trello-attachments.s3.amazonaws.com/590fa7f5a8ab015d0cf88052/590fa896d2d25e50583de620/e4e0650f52c6cff260083dbdc3b25891/dev.gif" width="720" height="380">
-</p>
+- [Node.js](https://nodejs.org/pt-br/) - JavaScript runtime
+- [Express](https://expressjs.com/pt-br/) - O framework web utilizado
+- [MongoDB](https://www.mongodb.com/) - Base de dados não relacional
+- [Yarn](https://yarnpkg.com/) - Gerenciador de pacotes e dependências
 
-### Tecnologias:
-Nodejs
+## Para começar
 
+Essas instruções vão te levar a uma cópia do projeto rodando em sua máquina local para propósitos de testes e desenvolvimento.
 
-## Como Utilizar
-1 - Use um template do <a href="https://devchallenge.now.sh/">DevChallenge</a> com o código inicial<br>
-2 - Leia as instruções no readme.md<br>
-3 - Comece a codar!<br>
-4 - Compartilhe seu resultado com a comunidade :)
-<br><br>
-1 - Use a <a href="https://devchallenge.now.sh/">DevChallenge</a> template with the starter code<br>
-2 - Read the instructions in readme.md<br>
-3 - Start coding!<br>
-4 - Share your results with the community :)<br>
+```bash
+git clone https://github.com/Lorenalgm/DevChallengeAPI.git
 
-## Como Contribuir
-Você pode ajudar com o projeto:<br>
-- Sugerindo e/ou criando novos desafios: esses desafios ficarão disponíveis e poderão ajudar todos os desenvolvedores a praticarem
-- Contribuindo com melhorias e correções no site: você poderá enviar uma pull request para que sua alteração fique disponível para todos os devs!
-<br><br>
-You can help by contributing with new challenges or improving the website
-
-### Requisitos
-1. Editor de sua preferência. Indico o Visual Studio Code
-2. Nodejs
-3. Yarn
-
-### Backend
-
-1. Faça o <a target="_blank" href="https://github.com/Lorenalgm/DevChallengeAPI/archive/master.zip">Download </a> ou clone o repositório do DevChallenge
-```sh 
-git@github.com:Lorenalgm/DevChallengeAPI.git
+cd DevChallengeAPI
 ```
-2. Abra o projeto no seu editor
-3. No seu terminal, instale os pacotes necessários:
-```sh 
-yarn 
-``` 
-4. Boa! Agora você pode iniciar o servidor:
-```sh 
+
+### Instalação padrão
+
+#### Pré-requisitos
+
+- [Node.js](https://nodejs.org/pt-br/) versão 12 ou superior
+- Um gerenciador de dependências - Yarn ou NPM
+- Uma instância local ou um cluster do [MongoDB](https://www.mongodb.com/)
+
+#### Instalando dependências
+
+```bash
+npm install
+```
+
+ou
+
+```bash
+yarn
+```
+
+#### Inicializando uma instância local
+
+```bash
+npm run dev
+```
+
+ou
+
+```bash
 yarn dev
 ```
-5. O backend do Dechallenge backend está disponível! Agora você pode ver os dados no frontend. Se você quiser testar a API do DevChallenge, eu recomendo que utilize o Insomnia. O backend estará disponível em http://localhost:3333/
 
-## Comunidade
-Nosso objetivo é ajudar cada vez mais na evolução de desenvolvedores! Por isso, temos uma comunidade exclusiva do DevChallenge no Discord. Bora? https://discord.gg/yvYXhGj <br>
-<br>
-Site: https://devchallenge.now.sh/ <br>
-Linkedin: https://www.linkedin.com/in/lorenagmontes/
+### Instalação com Docker
+
+Caso prefira inicializar um ambiente de desenvolvimento com Docker, temos um arquivo `docker-compose.yml` preparado com as configurações necessárias.
+
+#### Pré-requisitos
+
+- [Docker](https://docs.docker.com/engine/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+#### Inicializando os contêineres
+
+```bash
+docker-compose build && docker-compose up -d
+```
+
+## Referência de API
+
+Gostaria de ver quais serviços são disponibilizados por nossa API? Veja a [REFERENCE.md](REFERENCE.md) para detalhes.
+
+## Como contribuir
+
+Gostaria de contribuir com o projeto? Acesse [CONTRIBUTING.md](CONTRIBUTING.md) para o manual completo de contribuição.
+
+## Autores
+
+- **Lorena Montes** - *Trabalho inicial* - [Lorenalgm](https://github.com/Lorenalgm)
+
+Veja também a lista de [contribuidores](https://devchallenge.now.sh/devs) que ajudaram no projeto!
+
+## Licença
+
+Este projeto é licenciado sob a Licença MIT - veja [LICENSE.md](LICENSE.md) para detalhes.
+
+## Nossa comunidade
+
+Nosso objetivo é ajudar cada vez mais na evolução de desenvolvedores! Por isso, temos uma comunidade exclusiva do DevChallenge no Discord. Interessado? [Participe](https://discord.gg/yvYXhGj)!
 
 [forks-shield]: https://img.shields.io/github/forks/Lorenalgm/DevChallengeAPI.svg?style=flat-square
 [forks-url]: https://github.com/Lorenalgm/DevChallengeAPI/network/members
 [stars-shield]: https://img.shields.io/github/stars/Lorenalgm/DevChallengeAPI.svg?style=flat-square
 [stars-url]: https://github.com/Lorenalgm/DevChallengeAPI/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Lorenalgm/DevChallengeAPI.svg?style=flat-square
-[issues-url]: https://github.com/Lorenalgm/DevChallenge/issues
+[issues-url]: https://github.com/Lorenalgm/DevChallengeAPI/issues
 
