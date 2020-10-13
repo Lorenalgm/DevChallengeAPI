@@ -14,8 +14,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "./node_modules/.bin/eslint --fix",
-      "git add"
+      "./node_modules/.bin/eslint --fix"
     ]
   },
   "husky": {
