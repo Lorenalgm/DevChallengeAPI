@@ -27,4 +27,4 @@ app.use(routes);
 app.use(routeNotFound);
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 3333);
+module.exports = app;
