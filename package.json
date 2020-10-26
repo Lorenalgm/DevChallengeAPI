@@ -3,12 +3,11 @@
   "description": "DevChallenge RESTful API. Made with Node.js, Express.",
   "author": "Lorena Montes - lorenalgm",
   "version": "1.0.0",
-  "main": "src/bin/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/bin/server.js",
+    "start": "node dist/bin/server.js",
+    "start:dev": "nodemon src/bin/server.ts",
     "lint": "eslint src --ext js",
-    "start": "node src/bin/server.js",
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
@@ -19,15 +18,25 @@
     "mongoose": "^5.9.14"
   },
   "devDependencies": {
-    "eslint": "^7.5.0",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "@types/cors": "^2.8.8",
+    "@types/express": "^4.17.8",
+    "@types/mongoose": "^5.7.36",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-config-standard": "^15.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.2",
     "husky": "^4.2.5",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
-    "supertest": "^4.0.2"
+    "sucrase": "^3.16.0",
+    "supertest": "^4.0.2",
+    "typescript": "^4.0.3"
   }
 }

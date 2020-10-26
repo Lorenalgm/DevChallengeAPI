@@ -1,12 +1,8 @@
-require('dotenv').config({
-  path:
-    process.env.NODE_ENV === 'production'
-      ? '.env'
-      : `.env.${process.env.NODE_ENV}`
-});
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+import './config/dotenv';
 
 const errorHandler = require('./middlewares/errorHandler');
 const routeNotFound = require('./middlewares/routeNotFound');
@@ -27,4 +23,4 @@ app.use(routes);
 app.use(routeNotFound);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

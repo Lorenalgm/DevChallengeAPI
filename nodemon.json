@@ -1,4 +1,7 @@
 {
+  "execMap": {
+    "ts": "sucrase-node"
+  },
   "env": {
     "NODE_ENV": "development"
   }
