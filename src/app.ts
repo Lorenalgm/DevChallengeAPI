@@ -1,26 +1,43 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+import express from 'express'
+import mongoose from 'mongoose'
+import cors from 'cors'
 
-import './config/dotenv';
+import './config/dotenv'
 
-const errorHandler = require('./middlewares/errorHandler');
-const routeNotFound = require('./middlewares/routeNotFound');
+import errorHandler from './middlewares/errorHandler'
+import routeNotFound from './middlewares/routeNotFound'
 
-const routes = require('./routes');
+import routes from './routes'
 
-const app = express();
+class App {
+  public express: express.Application;
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+  constructor() {
+    this.express = express()
 
-app.use(cors());
-app.use(express.json());
-app.use(routes);
+    this.database()
+    this.middlewares()
+    this.routes()
+  }
 
-app.use(routeNotFound);
-app.use(errorHandler);
+  database(): void {
+    mongoose.connect(process.env.MONGO_URL || '', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+  }
 
-export default app;
+  middlewares(): void {
+    this.express.use(cors())
+    this.express.use(express.json())
+  }
+
+  routes(): void {
+    this.express.use(routes)
+
+    this.express.use(routeNotFound)
+    this.express.use(errorHandler)
+  }
+}
+
+export default new App().express

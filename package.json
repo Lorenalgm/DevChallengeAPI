@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node dist/bin/server.js",
     "start:dev": "nodemon src/bin/server.ts",
-    "lint": "eslint src --ext js",
+    "lint": "eslint . --ext ts",
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {

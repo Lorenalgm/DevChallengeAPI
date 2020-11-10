@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-exports.clearDatabase = () => mongoose.connection.dropDatabase();
+exports.clearDatabase = () => mongoose.connection.dropDatabase()
 
-exports.closeConnection = () => mongoose.connection.close();
+exports.closeConnection = () => mongoose.connection.close()

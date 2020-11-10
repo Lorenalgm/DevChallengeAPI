@@ -13,9 +13,8 @@ ENV NODE_ENV=development
 # ENV NODE_ENV=production
 
 ENV MONGO_URL=mongodb://mongodb/devchallenge-${NODE_ENV}
-ENV PORT=3333
 
 EXPOSE ${PORT}
 
-ENTRYPOINT ["npm", "run", "dev"]
+ENTRYPOINT ["npm", "run", "start:dev"]
 # ENTRYPOINT ["npm", "start"]

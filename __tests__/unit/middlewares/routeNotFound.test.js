@@ -1,32 +1,32 @@
-const request = require('supertest');
-const app = require('../../../src/app');
+const request = require('supertest')
+const app = require('../../../src/app')
 
-const { closeConnection } = require('../../helpers/database');
+const { closeConnection } = require('../../helpers/database')
 
 afterAll(async done => {
-  await closeConnection();
+  await closeConnection()
 
-  done();
-});
+  done()
+})
 
 describe('Testing route not found middleware', () => {
   it('should return HTTP status 404 when route does not exists', async done => {
-    const result = await request(app).get('/learton');
+    const result = await request(app).get('/learton')
 
-    expect(result).toHaveProperty('status');
-    expect(result.status).toBe(404);
-    expect(result.body.message).toBe('Not found.');
+    expect(result).toHaveProperty('status')
+    expect(result.status).toBe(404)
+    expect(result.body.message).toBe('Not found.')
 
-    done();
-  });
+    done()
+  })
 
   it('should return HTTP status 404 when method is incorred', async done => {
-    const result = await request(app).put('/newsletter');
+    const result = await request(app).put('/newsletter')
 
-    expect(result).toHaveProperty('status');
-    expect(result.status).toBe(404);
-    expect(result.body.message).toBe('Not found.');
+    expect(result).toHaveProperty('status')
+    expect(result.status).toBe(404)
+    expect(result.body.message).toBe('Not found.')
 
-    done();
-  });
-});
+    done()
+  })
+})
