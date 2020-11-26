@@ -97,7 +97,7 @@ Caso prefira inicializar um ambiente de desenvolvimento com Docker, temos um arq
 #### Inicializando os contêineres
 
 ```bash
-docker-compose build && docker-compose up -d
+docker-compose up -d --build
 ```
 
 ## Referência de API
