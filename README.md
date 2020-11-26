@@ -6,7 +6,7 @@
   <h1>DevChallenge RESTful API</h1>
   <br>
   <p><b>Melhore suas habilidades através de desafios de front-end, back-end e mobile!</b></p>
-  <sub>Procurando pelo repositório do aplicativo web? Acesse <a href="https://github.com/Lorenalgm/DevChallengeAPI">aqui</a>!</sub>
+  <sub>Procurando pelo repositório do aplicativo web? Acesse <a href="https://github.com/Lorenalgm/DevChallenge">aqui</a>!</sub>
   <br>
 </div>
 
