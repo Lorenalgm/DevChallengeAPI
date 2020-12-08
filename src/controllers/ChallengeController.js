@@ -28,7 +28,7 @@ module.exports = {
       name,
       description,
       level,
-      techs,
+      techs: techs.split(',').map(tech => tech.trim()),
       background,
       images,
       github_url: githubUrl,
