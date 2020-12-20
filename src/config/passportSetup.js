@@ -6,6 +6,7 @@ require('dotenv').config({
 });
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
+const devService = require('../services/devs.service');
 
 passport.use(
   new GitHubStrategy(
@@ -17,8 +18,24 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback function
-      console.log('callback function fired');
-      console.log(profile);
+
+      const {
+        username: github,
+        id: githubId,
+        displayName: name,
+        emails: [{ value: email }],
+        photos: [{ value: avatar }]
+      } = profile;
+
+      const dev = await devService.create({
+        name,
+        email,
+        github,
+        githubId,
+        avatar
+      });
+
+      console.log(`User created: ${dev}`);
     }
   )
 );
