@@ -8,6 +8,17 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
 const devsService = require('../services/devs.service');
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  const user = await devsService.fetchById(id);
+  if (user) {
+    done(null, user);
+  }
+});
+
 passport.use(
   new GitHubStrategy(
     {
@@ -27,12 +38,12 @@ passport.use(
         photos: [{ value: avatar }]
       } = profile;
 
-      const devExists = await devsService.fetchByGitHubId(githubId);
+      const existingDev = await devsService.fetchByGitHubId(githubId);
 
-      if (devExists) {
-        console.log(`Already existing user found: ${devExists}`);
+      if (existingDev) {
+        done(null, existingDev);
       } else {
-        const dev = await devsService.create({
+        const newDev = await devsService.create({
           name,
           email,
           github,
@@ -40,7 +51,7 @@ passport.use(
           avatar
         });
 
-        console.log(`User created: ${dev}`);
+        done(null, newDev);
       }
     }
   )
