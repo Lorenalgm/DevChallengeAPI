@@ -25,7 +25,7 @@ authRouter.get(
   '/github/callback',
   passport.authenticate('github'),
   (request, response) => {
-    response.send('You reached a callback URI');
+    response.redirect('/profile');
   }
 );
 
