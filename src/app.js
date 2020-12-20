@@ -11,6 +11,8 @@ const cors = require('cors');
 const errorHandler = require('./middlewares/errorHandler');
 const routeNotFound = require('./middlewares/routeNotFound');
 
+const passportSetup = require('./config/passportSetup');
+
 const routes = require('./routes');
 
 const app = express();
