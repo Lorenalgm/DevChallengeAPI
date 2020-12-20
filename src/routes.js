@@ -1,10 +1,13 @@
 const express = require('express');
+const authRoutes = require('./routes/authRoutes');
 
 const DevController = require('./controllers/DevController');
 const ChallengeController = require('./controllers/ChallengeController');
 const NewsletterController = require('./controllers/NewsletterController');
 
 const routes = express.Router();
+
+routes.use('/auth', authRoutes);
 
 routes.get('/challenges', ChallengeController.index);
 routes.get('/challenges/:challenge_id', ChallengeController.show);
