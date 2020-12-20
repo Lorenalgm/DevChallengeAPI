@@ -13,7 +13,7 @@ const passport = require('passport');
 const errorHandler = require('./middlewares/errorHandler');
 const routeNotFound = require('./middlewares/routeNotFound');
 
-const passportSetup = require('./config/passportSetup');
+const passportSetup = require('./providers/passport/index');
 
 const routes = require('./routes');
 

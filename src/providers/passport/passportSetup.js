@@ -6,18 +6,7 @@ require('dotenv').config({
 });
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
-const devsService = require('../services/devs.service');
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  const user = await devsService.fetchById(id);
-  if (user) {
-    done(null, user);
-  }
-});
+const devsService = require('../../services/devs.service');
 
 passport.use(
   new GitHubStrategy(
