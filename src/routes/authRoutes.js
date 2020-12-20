@@ -3,7 +3,11 @@ const passport = require('passport');
 
 // auth login
 authRouter.get('/login', (request, response) => {
-  response.send('logging in');
+  if (!request.user) {
+    response.send('login');
+  } else {
+    response.redirect('/profile');
+  }
 });
 
 // auth logout
