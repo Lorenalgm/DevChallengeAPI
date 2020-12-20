@@ -1,4 +1,4 @@
-const { challengesService } = require('../services');
+const challengesService = require('../services/challenges.service');
 
 module.exports = {
   async index(request, response) {
