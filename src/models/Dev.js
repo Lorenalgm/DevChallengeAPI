@@ -7,6 +7,7 @@ const DevSchema = new mongoose.Schema(
     bio: String,
     linkedin: String,
     github: String,
+    githubId: String,
     avatar: String
   },
   {
