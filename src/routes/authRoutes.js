@@ -9,7 +9,6 @@ authRouter.get('/login', (request, response) => {
 // auth logout
 authRouter.get('/logout', (request, response) => {
   // handle with passport
-  response.send('logging out');
 });
 
 // auth with github
@@ -22,8 +21,12 @@ authRouter.get(
 
 // callback route for github to redirect to
 
-authRouter.get('/github/callback', (request, response) => {
-  response.send('You reached a callback URI');
-});
+authRouter.get(
+  '/github/callback',
+  passport.authenticate('github'),
+  (request, response) => {
+    response.send('You reached a callback URI');
+  }
+);
 
 module.exports = authRouter;
