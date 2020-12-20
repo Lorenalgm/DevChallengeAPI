@@ -6,7 +6,7 @@ require('dotenv').config({
 });
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
-const devService = require('../services/devs.service');
+const devsService = require('../services/devs.service');
 
 passport.use(
   new GitHubStrategy(
@@ -27,15 +27,21 @@ passport.use(
         photos: [{ value: avatar }]
       } = profile;
 
-      const dev = await devService.create({
-        name,
-        email,
-        github,
-        githubId,
-        avatar
-      });
+      const devExists = await devsService.fetchByGitHubId(githubId);
 
-      console.log(`User created: ${dev}`);
+      if (devExists) {
+        console.log(`Already existing user found: ${devExists}`);
+      } else {
+        const dev = await devsService.create({
+          name,
+          email,
+          github,
+          githubId,
+          avatar
+        });
+
+        console.log(`User created: ${dev}`);
+      }
     }
   )
 );
