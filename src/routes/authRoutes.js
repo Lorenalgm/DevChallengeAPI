@@ -8,7 +8,8 @@ authRouter.get('/login', (request, response) => {
 
 // auth logout
 authRouter.get('/logout', (request, response) => {
-  // handle with passport
+  request.logout();
+  response.redirect('/');
 });
 
 // auth with github
