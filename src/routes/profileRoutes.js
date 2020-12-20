@@ -1,13 +1,5 @@
 const profileRouter = require('express').Router();
-
-const ensureAuthenticated = (request, response, next) => {
-  if (!request.user) {
-    // if user is not logged in
-    response.redirect('auth/login');
-  } else {
-    next();
-  }
-};
+const { ensureAuthenticated } = require('../middlewares/ensureAuthenticated');
 
 profileRouter.get('/', ensureAuthenticated, (request, response) => {
   delete request.user.id;
