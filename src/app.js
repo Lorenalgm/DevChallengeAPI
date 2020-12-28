@@ -9,7 +9,7 @@ require('./config/dotenv');
 const errorHandler = require('./middlewares/errorHandler');
 const routeNotFound = require('./middlewares/routeNotFound');
 
-const passportSetup = require('./providers/passport/index');
+require('./providers/passport/index');
 
 const routes = require('./routes');
 
