@@ -1,12 +1,25 @@
 {
   "name": "backend",
+  "description": "DevChallenge RESTful API. Made with Node.js, Express.",
+  "author": "Lorena Montes - lorenalgm",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/bin/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon src/bin/server.js",
     "lint": "eslint src --ext js",
-    "start": "node src/index.js"
+    "start": "node src/bin/server.js",
+    "test": "NODE_ENV=test jest"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.14",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12"
   },
   "devDependencies": {
     "eslint": "^7.5.0",
@@ -15,14 +28,9 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.5"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.14"
+    "prettier": "^2.0.5",
+    "supertest": "^4.0.2"
   }
 }
