@@ -1,12 +1,15 @@
 const Challenge = require('../models/Challenge');
 
 module.exports = {
-  fetchAll(type = undefined) {
-    if (type) {
-      return Challenge.find({ type });
-    }
-
-    return Challenge.find();
+  fetchAll(queryString = {}) {
+    const filter = {};
+    const filterAllowed = ['type', 'level', 'techs'];
+    Object.keys(queryString).map(property => {
+      const canFilter =
+        filterAllowed.includes(property) && !!queryString[property];
+      if (canFilter) filter[property] = queryString[property];
+    });
+    return Challenge.find(filter);
   },
 
   fetchById(challengeId) {

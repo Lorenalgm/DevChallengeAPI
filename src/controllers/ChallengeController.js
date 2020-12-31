@@ -2,16 +2,8 @@ const challengesService = require('../services/challenges.service');
 
 module.exports = {
   async index(request, response) {
-    const { type, level, techs } = request.query;
-    const filter = {};
-    let challenges = [];
-
-    if (type) filter.type = type;
-    if (level) filter.level = level;
-    if (techs) filter.techs = techs;
-
-    challenges = await Challenge.find(filter);
-
+    const queryString = request.query;
+    const challenges = await challengesService.fetchAll(queryString);
     return response.json(challenges);
   },
 
