@@ -6,8 +6,9 @@ function getFilters(queryString, filtersAllowed) {
     const isPropertyValueValid = !!queryString[property];
     if (isFilterAllowed && isPropertyValueValid)
       return { ...filterPrev, [property]: queryString[property] };
-  },{});
+  }, {});
 }
+
 module.exports = {
   fetchAll(queryString = {}) {
     const filtersAllowed = ['type', 'level', 'techs'];
