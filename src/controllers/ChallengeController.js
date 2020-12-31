@@ -2,10 +2,8 @@ const challengesService = require('../services/challenges.service');
 
 module.exports = {
   async index(request, response) {
-    const { type } = request.query;
-
-    const challenges = await challengesService.fetchAll(type);
-
+    const queryString = request.query;
+    const challenges = await challengesService.fetchAll(queryString);
     return response.json(challenges);
   },
 
