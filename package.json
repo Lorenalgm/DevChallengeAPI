@@ -12,7 +12,6 @@
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
-    "axios": "^0.19.2",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
