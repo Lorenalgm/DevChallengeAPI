@@ -1,10 +1,11 @@
+require('./config/dotenv');
+
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
-require('./config/dotenv');
+const database = require('./database/init');
 
 const errorHandler = require('./middlewares/errorHandler');
 const routeNotFound = require('./middlewares/routeNotFound');
@@ -15,10 +16,7 @@ const routes = require('./routes');
 
 const app = express();
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+database.init();
 
 app.use(cors());
 app.use(express.json());
