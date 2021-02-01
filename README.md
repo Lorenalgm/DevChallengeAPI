@@ -34,7 +34,7 @@
 
 ## Sobre
 
-O DevChallenge é um projeto que visa contrubuir com a evolução de desenvolvedores, disponibilizando desafios para que possam praticar, melhorar suas skills e criarem seus portfólios.
+O DevChallenge é um projeto que visa contribuir com a evolução de desenvolvedores, disponibilizando desafios para que possam praticar, melhorar suas skills e criarem seus portfólios.
 
 ## Feito com
 
