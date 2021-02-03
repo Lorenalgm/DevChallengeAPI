@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const { DEVCHALLENGE_MONGO, databaseOptions } = require('../config/database');
+const { MONGO_URL, databaseOptions } = require('../config/database');
 
 const init = () => {
-  mongoose.connect(DEVCHALLENGE_MONGO, databaseOptions);
+  mongoose.connect(MONGO_URL, databaseOptions);
 };
 
 exports.init = init;
