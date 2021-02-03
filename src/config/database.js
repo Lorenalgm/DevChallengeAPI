@@ -1,4 +1,4 @@
-exports.DEVCHALLENGE_MONGO = process.env.DEVCHALLENGE_MONGO;
+exports.DEVCHALLENGE_MONGO = process.env.MONGO_URL;
 
 exports.databaseOptions = {
   useNewUrlParser: true,
