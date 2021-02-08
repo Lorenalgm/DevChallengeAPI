@@ -4,7 +4,7 @@ const cors = require('cors');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
-const routes = require('../../routes');
+const Routes = require('../../Routes');
 
 const errorHandler = require('../../middlewares/errorHandler');
 const routeNotFound = require('../../middlewares/routeNotFound');
@@ -12,7 +12,7 @@ const routeNotFound = require('../../middlewares/routeNotFound');
 /**
  * Express app bootloader
  */
-function boot(app) {
+function boot(app, container) {
   app.use(cors());
   app.use(express.json());
 
@@ -22,6 +22,8 @@ function boot(app) {
       keys: [process.env.PASSPORT_SESSION_COOKIE_KEY]
     })
   );
+
+  const routes = new Routes(container).getRouter();
 
   app.use(passport.initialize());
   app.use(passport.session());
