@@ -4,7 +4,7 @@ const cors = require('cors');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
-const Routes = require('../../Routes');
+const Routes = require('../../shared/infra/http/routes/Routes');
 
 const errorHandler = require('../../middlewares/errorHandler');
 const routeNotFound = require('../../middlewares/routeNotFound');
