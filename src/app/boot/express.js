@@ -1,4 +1,5 @@
 const express = require('express');
+require('express-async-errors');
 const cors = require('cors');
 
 const cookieSession = require('cookie-session');
@@ -29,7 +30,9 @@ function boot(app) {
   app.use(routes);
 
   app.use(routeNotFound);
-  app.use(errorHandler);
+  app.use((error, request, response, next) =>
+    errorHandler(error, request, response, next)
+  );
 }
 
 module.exports = boot;
