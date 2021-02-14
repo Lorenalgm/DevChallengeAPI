@@ -30,9 +30,7 @@ function boot(app) {
   app.use(routes);
 
   app.use(routeNotFound);
-  app.use((error, request, response, next) =>
-    errorHandler(error, request, response, next)
-  );
+  app.use(errorHandler);
 }
 
 module.exports = boot;
