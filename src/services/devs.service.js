@@ -12,6 +12,10 @@ async function fetchByGitHubId(githubId) {
   return Dev.findOne({ githubId });
 }
 
+async function fetchByEmail(email) {
+  return Dev.findOne({ email });
+}
+
 async function create(devData) {
   const { githubId } = devData;
 
@@ -23,4 +27,4 @@ async function create(devData) {
   return Dev.create(devData);
 }
 
-module.exports = { fetchAll, fetchById, fetchByGitHubId, create };
+module.exports = { fetchAll, fetchById, fetchByGitHubId, fetchByEmail, create };
