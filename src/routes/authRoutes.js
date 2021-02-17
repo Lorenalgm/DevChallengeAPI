@@ -1,22 +1,20 @@
 const authRouter = require('express').Router();
 
-const AuthenticationController = require('../controllers/AuthenticationController');
+const AuthorizationController = require('../controllers/AuthorizationController');
 
-// auth login
-authRouter.get('/login', AuthenticationController.login);
+const authorizationController = new AuthorizationController();
 
-// auth logout
-authRouter.get('/logout', AuthenticationController.logout);
-
-// auth with github
-authRouter.get('/github', AuthenticationController.oAuthGitHubAuthorization());
-
-// callback route for github to redirect to
+authRouter.get('/github', (request, response) =>
+  authorizationController.getAuthorizationCode(request, response)
+);
 
 authRouter.get(
   '/github/callback',
-  AuthenticationController.oAuthGitHubRequestUserData(),
-  AuthenticationController.oAuthCallbackRedirect
+  (request, response, next) =>
+    authorizationController.getAccessToken(request, response, next),
+  (request, response, next) =>
+    authorizationController.getUserProfile(request, response, next),
+  (request, response) => authorizationController.handleUser(request, response)
 );
 
 module.exports = authRouter;
