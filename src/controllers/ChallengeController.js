@@ -52,5 +52,31 @@ module.exports = {
     );
 
     return response.json(challenge);
+  },
+
+  async update(request, response) {
+    const { challenge_id } = request.params;
+    const updatedChallenge = request.body;
+
+    try {
+      const challenge = await Challenge.findById(challenge_id);
+
+      if (!challenge) {
+        return response.status(404).json({ error: 'Challenge not found.' });
+      }
+
+      const challengeSchemaKeys = Object.keys(Challenge.schema.obj);
+      challengeSchemaKeys.forEach(challengeSchemaKey => {
+        if (challengeSchemaKey !== 'dev_id') {
+          challenge[challengeSchemaKey] = updatedChallenge[challengeSchemaKey];
+        }
+      });
+
+      await challenge.save();
+
+      return response.json(challenge);
+    } catch (err) {
+      return response.status(500).json({ error: 'Server error.' });
+    }
   }
 };

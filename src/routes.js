@@ -9,6 +9,7 @@ const routes = express.Router();
 routes.get('/challenges', ChallengeController.index);
 routes.get('/challenges/:challenge_id', ChallengeController.show);
 routes.post('/challenges', ChallengeController.store);
+routes.patch('/challenges/:challenge_id', ChallengeController.update);
 
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);

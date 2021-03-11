@@ -165,6 +165,57 @@ Retorna os dados do desafio.
 
 </details>
 
+<details>
+<summary style="font-size:24px;color:black"><b>PATCH: /challenges/:id</b></summary>
+
+#### Função
+
+Atualizar desafio por ID.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `challenge_id` | UUID do desafio | `path` | `String` | Sim |
+| `type` | Categoria do desafio | `body` | `String` | Não |
+| `name` | Título do desafio | `body` | `String` | Não |
+| `description` | Descrição do desafio | `body` | `String` | Não |
+| `level` | Nível de dificuldade | `body` | `String` | Não |
+| `techs` | Tecnologias recomendadas | `body` | `[String]` | Não |
+| `background` | Capa do desafio | `body` | `String` | Não |
+| `images` | Pré-visualização do resultado | `body` | `[String]` | Não |
+| `github_url` | URL do template | `body` | `String` | Não |
+| `brief` | Sumário do desafio | `body` | `String` | Não |
+
+**URL de Requisição**
+
+> https://devchallengeapi.herokuapp.com/challenges/:challenge_id
+
+Retorna os dados do desafio.
+
+#### Exemplo de resposta
+
+```
+{
+    "techs": [String],
+    "images": [String],
+    "_id": String,
+    "type": String,
+    "name": String,
+    "description": String,
+    "level": String,
+    "background": String,
+    "github_url": String,
+    "brief": String,
+    "dev_id": String,
+    "createdAt": Date,
+    "updatedAt": Date
+  }
+```
+
+</details>
+
 ## API de Desenvolvedores
 
 Utilize a API de desenvolvedores quando precisar recuperar a lista de contribuidores do projeto.
