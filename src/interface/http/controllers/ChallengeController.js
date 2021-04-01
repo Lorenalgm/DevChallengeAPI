@@ -1,10 +1,5 @@
 const ApplicationController = require('./ApplicationController');
 
-/*
-  ! The repository MUST NOT be utilized directly from the controller.
-  ! Instead, it must be injected and executed on the application layer.
-*/
-
 const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongodb/repository/ChallengeRepository');
 
 const ListChallenges = require('../../../application/challenges/ListChallenges');
