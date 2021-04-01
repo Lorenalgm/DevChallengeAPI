@@ -2,15 +2,19 @@ require('../../config/dotenv');
 require('../../providers/passport');
 
 const express = require('express');
-const container = require('../../shared/container');
+const MongoDBConnection = require('../../infrastructure/database/mongodb/Connection');
 
-const boot = require('../../app/boot/express');
-const database = require('../../database/init');
+class App {
+  constructor() {
+    this.express = express();
 
-const app = express();
+    this.connect();
+  }
 
-database.init();
+  // eslint-disable-next-line class-methods-use-this
+  connect() {
+    MongoDBConnection.connect();
+  }
+}
 
-boot(app, container);
-
-module.exports = app;
+module.exports = new App().express;
