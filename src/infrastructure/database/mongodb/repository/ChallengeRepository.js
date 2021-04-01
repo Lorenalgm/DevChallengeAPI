@@ -2,21 +2,21 @@ const Challenge = require('../schemas/Challenge');
 
 class ChallengesRepository {
   constructor() {
-    this.mongooseRepository = Challenge;
+    this.challengeModel = Challenge;
   }
 
   async fetchAll(filters = {}) {
-    const challenges = await this.mongooseRepository.find(filters);
+    const challenges = await this.challengeModel.find(filters);
     return challenges;
   }
 
   async fetchById(challengeId) {
-    const challenge = await this.mongooseRepository.findById(challengeId);
+    const challenge = await this.challengeModel.findById(challengeId);
     return challenge;
   }
 
   async create(challengeData) {
-    const challenge = await this.mongooseRepository.create(challengeData);
+    const challenge = await this.challengeModel.create(challengeData);
     return challenge;
   }
 }
