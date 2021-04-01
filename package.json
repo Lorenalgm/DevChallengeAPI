@@ -6,9 +6,9 @@
   "main": "src/bin/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/bin/server.js",
+    "dev": "nodemon src/interface/http/server.js",
     "lint": "eslint src --ext js",
-    "start": "node src/bin/server.js",
+    "start": "node src/interface/http/server.js",
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
