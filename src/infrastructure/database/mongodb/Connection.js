@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { MONGO_URL } = require('../../environment');
+const { MONGO_URL } = require('../../../shared/environment');
 
 class MongoDBConnection {
   static connect() {

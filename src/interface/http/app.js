@@ -1,4 +1,4 @@
-require('../../config/dotenv');
+require('../../infrastructure/environment');
 require('../../providers/passport');
 
 const express = require('express');
