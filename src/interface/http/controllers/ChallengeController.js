@@ -8,6 +8,7 @@ const ApplicationController = require('./ApplicationController');
 const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongodb/repository/ChallengeRepository');
 
 const ListChallenges = require('../../../application/challenges/ListChallenges');
+const ShowChallenge = require('../../../application/challenges/ShowChallenge');
 
 class ChallengeController extends ApplicationController {
   async index() {
@@ -25,7 +26,9 @@ class ChallengeController extends ApplicationController {
   async show() {
     const { challenge_id: id } = this.req.params;
 
-    const challenge = await new ChallengeRepositoryMongo().fetchById(id);
+    const repository = new ChallengeRepositoryMongo();
+
+    const challenge = await new ShowChallenge(repository).run(id);
 
     return this.res.status(200).send(challenge);
   }
