@@ -1,6 +1,6 @@
 const { Error: MongooseError } = require('mongoose');
 
-const AppError = require('../shared/errors/AppError');
+const AppError = require('../../../shared/errors/AppError');
 
 // eslint-disable-next-line no-unused-vars
 function errorHandler(error, _request, response, _next) {

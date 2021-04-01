@@ -1,5 +1,7 @@
 const profileRouter = require('express').Router();
-const { ensureAuthenticated } = require('../middlewares/ensureAuthenticated');
+const {
+  ensureAuthenticated
+} = require('../interface/http/middlewares/ensureAuthenticated');
 
 profileRouter.get('/', ensureAuthenticated, (request, response) => {
   delete request.user.id;

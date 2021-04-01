@@ -10,8 +10,8 @@ const MongoDBConnection = require('../../infrastructure/database/mongodb/Connect
 const Routes = require('../../shared/infra/http/routes/Routes');
 const container = require('../../shared/container');
 
-const routeNotFound = require('../../middlewares/routeNotFound');
-const errorHandler = require('../../middlewares/errorHandler');
+const routeNotFound = require('./middlewares/routeNotFound');
+const errorHandler = require('./middlewares/errorHandler');
 
 class App {
   constructor() {
