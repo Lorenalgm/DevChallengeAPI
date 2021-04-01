@@ -11,14 +11,19 @@ const ListChallenges = require('../../../application/challenges/ListChallenges')
 const ShowChallenge = require('../../../application/challenges/ShowChallenge');
 const CreateChallenge = require('../../../application/challenges/CreateChallenge');
 
+const { ALLOWED_FILTERS } = require('../../../shared/enums/FilteringEnum');
+const { getFilters } = require('../../../shared/utils/Filtering');
+
 class ChallengeController extends ApplicationController {
   async index() {
     const queryString = this.req.query;
 
     const repository = new ChallengeRepositoryMongo();
 
-    // TODO: Apply correct filtering.
-    const challenge = await new ListChallenges(repository).run(queryString);
+    const allowedFilters = ALLOWED_FILTERS.challenges;
+    const filters = getFilters(queryString, allowedFilters);
+
+    const challenge = await new ListChallenges(repository).run(filters);
 
     //! Data needs to be serialized before sending the result.
     return this.res.status(200).send(challenge);
