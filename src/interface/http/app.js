@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 const MongoDBConnection = require('../../infrastructure/database/mongodb/Connection');
-const Routes = require('../../shared/infra/http/routes/Routes');
+const Routes = require('./routes');
 const container = require('../../shared/container');
 
 const routeNotFound = require('./middlewares/routeNotFound');

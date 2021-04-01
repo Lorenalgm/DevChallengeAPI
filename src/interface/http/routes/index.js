@@ -1,11 +1,11 @@
 const express = require('express');
 
-const ChallengesRoutes = require('../../../../modules/challenges/infra/http/routes/ChallengesRoutes');
-const authRouter = require('../../../../routes/authRoutes');
-const profileRouter = require('../../../../routes/profileRoutes');
+const ChallengesRoutes = require('../../../modules/challenges/infra/http/routes/ChallengesRoutes');
+const authRouter = require('./authRoutes');
+const profileRouter = require('./profileRoutes');
 
-const DevController = require('../../../../controllers/DevController');
-const NewsletterController = require('../../../../controllers/NewsletterController');
+const DevController = require('../../../controllers/DevController');
+const NewsletterController = require('../../../controllers/NewsletterController');
 
 class Routes {
   constructor(container) {
