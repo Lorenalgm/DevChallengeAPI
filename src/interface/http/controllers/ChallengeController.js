@@ -9,6 +9,7 @@ const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongo
 
 const ListChallenges = require('../../../application/challenges/ListChallenges');
 const ShowChallenge = require('../../../application/challenges/ShowChallenge');
+const CreateChallenge = require('../../../application/challenges/CreateChallenge');
 
 class ChallengeController extends ApplicationController {
   async index() {
@@ -47,7 +48,9 @@ class ChallengeController extends ApplicationController {
       dev_id: devId
     } = this.req.body;
 
-    const challenge = await new ChallengeRepositoryMongo().create({
+    const repository = new ChallengeRepositoryMongo();
+
+    const challenge = await new CreateChallenge(repository).run({
       type,
       name,
       description,
