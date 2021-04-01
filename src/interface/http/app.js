@@ -7,8 +7,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 const MongoDBConnection = require('../../infrastructure/database/mongodb/Connection');
-const Routes = require('./routes');
-const container = require('../../shared/container');
+const routes = require('./routes');
 
 const routeNotFound = require('./middlewares/routeNotFound');
 const errorHandler = require('./middlewares/errorHandler');
@@ -44,8 +43,6 @@ class App {
   }
 
   routes() {
-    const routes = new Routes(container).getRouter();
-
     this.express.use(routes);
   }
 

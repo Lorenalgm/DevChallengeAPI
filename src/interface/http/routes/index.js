@@ -1,11 +1,12 @@
 const express = require('express');
 
-const ChallengesRoutes = require('../../../modules/challenges/infra/http/routes/ChallengesRoutes');
+// const ChallengesRoutes = require('../../../modules/challenges/infra/http/routes/ChallengesRoutes');
 const authRouter = require('./authRoutes');
 const profileRouter = require('./profileRoutes');
 
 const DevController = require('../../../controllers/DevController');
 const NewsletterController = require('../../../controllers/NewsletterController');
+const ChallengeController = require('../controllers/ChallengeController');
 
 class Routes {
   constructor(container) {
@@ -13,35 +14,6 @@ class Routes {
     this.container = container;
 
     this.mountRoutes();
-  }
-
-  mountChallengesRouter() {
-    const challengesRoutes = this.container.resolve(
-      'ChallengesRepository',
-      ChallengesRoutes
-    );
-
-    const challengesRouter = challengesRoutes.getRouter();
-
-    this.router.use('/challenges', challengesRouter);
-  }
-
-  mountAuthRouter() {
-    this.router.use('/auth', authRouter);
-  }
-
-  mountProfileRouter() {
-    this.router.use('/profile', profileRouter);
-  }
-
-  mountDevsRouter() {
-    this.router.get('/devs', DevController.index);
-    this.router.post('/devs', DevController.store);
-  }
-
-  mountNewsletterRouter() {
-    this.router.get('/newsletter', NewsletterController.index);
-    this.router.post('/newsletter', NewsletterController.store);
   }
 
   mountRoutes() {
@@ -52,9 +24,35 @@ class Routes {
     this.mountNewsletterRouter();
   }
 
-  getRouter() {
-    return this.router;
+  mountDevsRouter() {
+    this.router.get('/devs', DevController.index);
+    this.router.post('/devs', DevController.store);
+  }
+
+  mountChallengesRouter() {
+    this.router.get('/challenges', (req, res) =>
+      new ChallengeController(req, res).index()
+    );
+    this.router.get('/challenges/:challenge_id', (req, res) =>
+      new ChallengeController(req, res).show()
+    );
+    this.router.post('/challenges', (req, res) =>
+      new ChallengeController(req, res).create()
+    );
+  }
+
+  mountNewsletterRouter() {
+    this.router.get('/newsletter', NewsletterController.index);
+    this.router.post('/newsletter', NewsletterController.store);
+  }
+
+  mountAuthRouter() {
+    this.router.use('/auth', authRouter);
+  }
+
+  mountProfileRouter() {
+    this.router.use('/profile', profileRouter);
   }
 }
 
-module.exports = Routes;
+module.exports = new Routes().router;
