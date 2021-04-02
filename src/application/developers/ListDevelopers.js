@@ -4,8 +4,7 @@ class ListDevelopers {
   }
 
   async run() {
-    const developers = await this.developerRepository.fetchAll();
-    return developers;
+    return this.developerRepository.fetchAll();
   }
 }
 

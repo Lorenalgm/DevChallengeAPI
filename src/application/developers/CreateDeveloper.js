@@ -1,11 +1,14 @@
+const Developer = require('../../domain/Developer');
+
 class CreateDeveloper {
   constructor(repository) {
     this.developerRepository = repository;
   }
 
   async run(developerData) {
-    const developer = await this.developerRepository.create(developerData);
-    return developer;
+    const developer = new Developer(developerData);
+
+    return this.developerRepository.create(developer);
   }
 }
 
