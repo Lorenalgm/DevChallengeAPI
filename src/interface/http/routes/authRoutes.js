@@ -1,6 +1,6 @@
 const authRouter = require('express').Router();
 
-const AuthenticationController = require('../../../controllers/AuthenticationController');
+const AuthenticationController = require('../controllers/AuthenticationController');
 
 // auth login
 authRouter.get('/login', AuthenticationController.login);
