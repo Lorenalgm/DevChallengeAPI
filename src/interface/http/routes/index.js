@@ -4,7 +4,7 @@ const express = require('express');
 const authRouter = require('./authRoutes');
 const profileRouter = require('./profileRoutes');
 
-const NewsletterController = require('../../../controllers/NewsletterController');
+const NewsletterController = require('../controllers/NewsletterController');
 const ChallengeController = require('../controllers/ChallengeController');
 const DeveloperController = require('../controllers/DeveloperController');
 
@@ -44,8 +44,9 @@ class Routes {
   }
 
   mountNewsletterRouter() {
-    this.router.get('/newsletter', NewsletterController.index);
-    this.router.post('/newsletter', NewsletterController.store);
+    this.router.get('/newsletter', (req, res) =>
+      new NewsletterController(req, res).list()
+    );
   }
 
   mountAuthRouter() {
