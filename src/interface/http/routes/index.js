@@ -28,7 +28,9 @@ class Routes {
     this.router.get('/devs', (req, res) =>
       new DeveloperController(req, res).list()
     );
-    // this.router.post('/devs', (req, res) => new DeveloperController(req, res).store);
+    this.router.post('/devs', (req, res) =>
+      new DeveloperController(req, res).store()
+    );
   }
 
   mountChallengesRouter() {
