@@ -1,10 +1,8 @@
-module.exports = (request, _response, next) => {
-  return next({
-    status: 404,
-    message: 'Not found.',
-    error: 'Resource not found.',
-    details: {
-      path: `The endpoint ${request.method}: ${request.path} could not be found.`
-    }
-  });
+const AppError = require('../../../shared/errors/AppError');
+
+module.exports = req => {
+  throw new AppError(
+    `The endpoint ${req.method}: ${req.path} could not be found.`,
+    404
+  );
 };
