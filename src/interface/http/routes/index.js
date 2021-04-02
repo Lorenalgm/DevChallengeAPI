@@ -47,6 +47,9 @@ class Routes {
     this.router.get('/newsletter', (req, res) =>
       new NewsletterController(req, res).list()
     );
+    this.router.post('/newsletter', (req, res) =>
+      new NewsletterController(req, res).create()
+    );
   }
 
   mountAuthRouter() {
