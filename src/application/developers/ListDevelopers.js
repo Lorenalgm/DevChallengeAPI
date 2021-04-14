@@ -1,5 +1,7 @@
+const DeveloperRepository = require('../../domain/DeveloperRepository');
+
 class ListDevelopers {
-  constructor(repository) {
+  constructor(repository = new DeveloperRepository()) {
     this.developerRepository = repository;
   }
 

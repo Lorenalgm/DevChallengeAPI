@@ -1,7 +1,8 @@
 const Challenge = require('../../domain/Challenge');
+const ChallengeRepository = require('../../domain/ChallengeRepository');
 
 class CreateChallenge {
-  constructor(repository) {
+  constructor(repository = new ChallengeRepository()) {
     this.challengeRepository = repository;
   }
 

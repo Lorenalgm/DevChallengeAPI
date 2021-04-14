@@ -1,7 +1,8 @@
 const Developer = require('../../domain/Developer');
+const DeveloperRepository = require('../../domain/DeveloperRepository');
 
 class CreateDeveloper {
-  constructor(repository) {
+  constructor(repository = new DeveloperRepository()) {
     this.developerRepository = repository;
   }
 
