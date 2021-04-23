@@ -15,7 +15,7 @@ class ChallengeRepository {
     return challenge;
   }
 
-  async create(challengeData) {
+  async create(challengeData = {}) {
     const challenge = await this.challengeModel.create(challengeData);
     return challenge;
   }

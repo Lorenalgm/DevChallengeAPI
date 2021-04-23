@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const ChallengeSchema = new mongoose.Schema(
   {
-    type: String,
+    type: {
+      type: String,
+      required: true,
+      enum: ['Frontend', 'Backend', 'Mobile']
+    },
     name: String,
     description: String,
     level: String,
