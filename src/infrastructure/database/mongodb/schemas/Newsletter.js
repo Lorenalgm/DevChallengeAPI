@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const NewsletterSchema = new mongoose.Schema(
   {
-    email: String
+    email: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true
