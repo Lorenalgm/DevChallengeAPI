@@ -1,23 +1,9 @@
-const mongoose = require('mongoose');
+const { Types, Error } = require('mongoose');
 
 const ChallengeRepository = require('../ChallengeRepository');
 const Challenge = require('../../../../../domain/Challenge');
 
-beforeAll(async () => {
-  const url = process.env.MONGO_URL;
-  await mongoose.connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-});
-
-afterAll(async () => {
-  await mongoose.connection.close();
-});
-
-afterEach(async () => {
-  await mongoose.connection.dropDatabase();
-});
+require('./setupTests');
 
 describe('Testing ChallengeRepository', () => {
   const challengeMock = new Challenge({
@@ -30,7 +16,7 @@ describe('Testing ChallengeRepository', () => {
     images: ['placeholder'],
     github_url: 'placeholder',
     brief: 'placeholder',
-    dev_id: mongoose.Types.ObjectId()
+    dev_id: Types.ObjectId()
   });
 
   describe('.created', () => {
@@ -39,7 +25,7 @@ describe('Testing ChallengeRepository', () => {
         try {
           await new ChallengeRepository().create();
         } catch (e) {
-          expect(e instanceof mongoose.Error.ValidationError).toBeTruthy();
+          expect(e instanceof Error.ValidationError).toBeTruthy();
         }
       });
     });
@@ -121,7 +107,7 @@ describe('Testing ChallengeRepository', () => {
         try {
           await repository.fetchById('invalid_id');
         } catch (e) {
-          expect(e instanceof mongoose.Error.CastError).toBeTruthy();
+          expect(e instanceof Error.CastError).toBeTruthy();
         }
       });
     });
@@ -129,7 +115,7 @@ describe('Testing ChallengeRepository', () => {
     describe('when a valid id is provided', () => {
       describe('and the id does not corresponds to a challenge', () => {
         it('returns null', async () => {
-          const id = mongoose.Types.ObjectId();
+          const id = Types.ObjectId();
 
           const challenge = await new ChallengeRepository().fetchById(id);
 
