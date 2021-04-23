@@ -16,15 +16,7 @@ class DeveloperController extends ApplicationController {
   }
 
   async store() {
-    const {
-      name,
-      position,
-      bio,
-      linkedin,
-      github,
-      githubId,
-      avatar
-    } = this.req.body;
+    const { name, position, bio, linkedin, github, avatar } = this.req.body;
 
     const repository = new DeveloperRepository();
 
@@ -34,7 +26,6 @@ class DeveloperController extends ApplicationController {
       bio,
       linkedin,
       github,
-      githubId,
       avatar
     });
 
