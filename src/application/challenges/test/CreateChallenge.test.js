@@ -1,19 +1,9 @@
-const mongoose = require('mongoose');
+const { Types } = require('mongoose');
 
 const CreateChallenge = require('../CreateChallenge');
 const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongodb/repository/ChallengeRepository');
 
-beforeAll(async () => {
-  const url = process.env.MONGO_URL;
-  await mongoose.connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-});
-
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+require('./setupTests');
 
 describe('Testing CreateChallenge Use Case', () => {
   const challenge = {
@@ -26,7 +16,7 @@ describe('Testing CreateChallenge Use Case', () => {
     images: ['placeholder'],
     github_url: 'placeholder',
     brief: 'placeholder',
-    dev_id: mongoose.Types.ObjectId()
+    dev_id: Types.ObjectId()
   };
 
   describe('if the repository dependency is not present', () => {
