@@ -1,6 +1,6 @@
 const Challenge = require('../schemas/Challenge');
 
-class ChallengesRepository {
+class ChallengeRepository {
   constructor() {
     this.challengeModel = Challenge;
   }
@@ -21,4 +21,4 @@ class ChallengesRepository {
   }
 }
 
-module.exports = ChallengesRepository;
+module.exports = ChallengeRepository;
