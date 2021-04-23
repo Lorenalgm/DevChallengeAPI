@@ -15,7 +15,7 @@ class DeveloperController extends ApplicationController {
     return this.res.status(200).send(developers);
   }
 
-  async create() {
+  async store() {
     const {
       name,
       position,
