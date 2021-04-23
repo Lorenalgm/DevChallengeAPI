@@ -17,7 +17,7 @@ afterAll(async () => {
 
 describe('Testing CreateChallenge Use Case', () => {
   const challenge = {
-    type: 'placeholder',
+    type: 'Frontend',
     name: 'placeholder',
     description: 'placeholder',
     level: 'placeholder',
