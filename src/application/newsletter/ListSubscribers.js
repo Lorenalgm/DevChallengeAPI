@@ -1,11 +1,12 @@
+const NewsletterRepository = require('../../domain/NewsletterRepository');
+
 class ListSubscribers {
-  constructor(repository) {
+  constructor(repository = new NewsletterRepository()) {
     this.newsletterRepository = repository;
   }
 
   async run() {
-    const subscribers = await this.newsletterRepository.fetchAll();
-    return subscribers;
+    return this.newsletterRepository.fetchAll();
   }
 }
 
