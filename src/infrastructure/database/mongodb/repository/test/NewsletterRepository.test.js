@@ -62,7 +62,9 @@ describe('Testing NewsletterRepository', () => {
     describe('when a email is provided', () => {
       it('successfully registers a new subscription', async () => {
         const repository = new NewsletterRepository();
-        const subscription = await repository.create('john.doe@email.com');
+        const subscription = await repository.create({
+          email: 'john.doe@email.com'
+        });
 
         expect(subscription).toEqual(
           expect.objectContaining({
