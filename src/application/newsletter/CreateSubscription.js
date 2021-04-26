@@ -1,11 +1,15 @@
+const Newsletter = require('../../domain/Newsletter');
+const NewsletterRepository = require('../../domain/NewsletterRepository');
+
 class CreateSubscription {
-  constructor(repository) {
+  constructor(repository = new NewsletterRepository()) {
     this.newsletterRepository = repository;
   }
 
   async run(email) {
-    const subscriber = await this.newsletterRepository.create(email);
-    return subscriber;
+    const subscriber = new Newsletter(email);
+
+    return this.newsletterRepository.create(subscriber);
   }
 }
 

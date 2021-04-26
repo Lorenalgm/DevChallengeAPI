@@ -10,8 +10,8 @@ class NewsletterRepository {
     return subscribers;
   }
 
-  async create(email) {
-    const subscriber = await this.newsletterModel.create({ email });
+  async create(subscriberData) {
+    const subscriber = await this.newsletterModel.create(subscriberData);
     return subscriber;
   }
 }
