@@ -1,11 +1,19 @@
-const { Types, Error } = require('mongoose');
+const mongoose = require('mongoose');
 
 const ChallengeRepository = require('../ChallengeRepository');
 const Challenge = require('../../../../../domain/Challenge');
-
-require('./setupTests');
+const ChallengeModel = require('../../schemas/Challenge');
 
 describe('Testing ChallengeRepository', () => {
+  beforeAll(() =>
+    mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+  );
+
+  afterAll(() => mongoose.connection.close());
+
   const challengeMock = new Challenge({
     type: 'Frontend',
     name: 'placeholder',
@@ -16,16 +24,18 @@ describe('Testing ChallengeRepository', () => {
     images: ['placeholder'],
     github_url: 'placeholder',
     brief: 'placeholder',
-    dev_id: Types.ObjectId()
+    dev_id: mongoose.Types.ObjectId()
   });
 
-  describe('.created', () => {
+  describe('.create', () => {
+    afterAll(() => ChallengeModel.deleteMany({}));
+
     describe('when a invalid challenge object is passed', () => {
       it('throws an ValidationError', async () => {
         try {
           await new ChallengeRepository().create();
         } catch (e) {
-          expect(e instanceof Error.ValidationError).toBeTruthy();
+          expect(e instanceof mongoose.Error.ValidationError).toBeTruthy();
         }
       });
     });
@@ -63,12 +73,18 @@ describe('Testing ChallengeRepository', () => {
     });
 
     describe('when no filter is provided', () => {
+      beforeAll(() =>
+        Promise.all([
+          ChallengeModel.create(challengeMock),
+          ChallengeModel.create(challengeMock),
+          ChallengeModel.create(challengeMock)
+        ])
+      );
+
+      afterAll(() => ChallengeModel.deleteMany({}));
+
       it('returns all registered challenges', async () => {
         const repository = new ChallengeRepository();
-
-        await repository.create(challengeMock);
-        await repository.create(challengeMock);
-        await repository.create(challengeMock);
 
         const challenges = await repository.fetchAll();
 
@@ -77,12 +93,18 @@ describe('Testing ChallengeRepository', () => {
     });
 
     describe('when a filter is provided', () => {
+      beforeAll(() =>
+        Promise.all([
+          ChallengeModel.create(challengeMock),
+          ChallengeModel.create(challengeMock),
+          ChallengeModel.create({ ...challengeMock, type: 'Backend' })
+        ])
+      );
+
+      afterAll(() => ChallengeModel.deleteMany({}));
+
       it('returns the challenges that match the filter', async () => {
         const repository = new ChallengeRepository();
-
-        await repository.create(challengeMock);
-        await repository.create(challengeMock);
-        await repository.create({ ...challengeMock, type: 'Backend' });
 
         const challenges = await repository.fetchAll({ type: 'Backend' });
 
@@ -107,7 +129,7 @@ describe('Testing ChallengeRepository', () => {
         try {
           await repository.fetchById('invalid_id');
         } catch (e) {
-          expect(e instanceof Error.CastError).toBeTruthy();
+          expect(e instanceof mongoose.Error.CastError).toBeTruthy();
         }
       });
     });
@@ -115,7 +137,7 @@ describe('Testing ChallengeRepository', () => {
     describe('when a valid id is provided', () => {
       describe('and the id does not corresponds to a challenge', () => {
         it('returns null', async () => {
-          const id = Types.ObjectId();
+          const id = mongoose.Types.ObjectId();
 
           const challenge = await new ChallengeRepository().fetchById(id);
 
@@ -126,7 +148,10 @@ describe('Testing ChallengeRepository', () => {
       describe('and the id corresponds to a challenge', () => {
         it('returns a single challenge object', async () => {
           const repository = new ChallengeRepository();
-          const { _id: challengeId } = await repository.create(challengeMock);
+
+          const { _id: challengeId } = await ChallengeModel.create(
+            challengeMock
+          );
 
           const challenge = await repository.fetchById(challengeId);
 

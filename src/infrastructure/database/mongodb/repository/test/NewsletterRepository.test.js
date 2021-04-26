@@ -1,10 +1,18 @@
-const { Error } = require('mongoose');
+const mongoose = require('mongoose');
 
 const NewsletterRepository = require('../NewsletterRepository');
-
-require('./setupTests');
+const NewsletterModel = require('../../schemas/Newsletter');
 
 describe('Testing NewsletterRepository', () => {
+  beforeAll(() =>
+    mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+  );
+
+  afterAll(() => mongoose.connection.close());
+
   describe('.fetchAll', () => {
     describe('when there are no subscribers', () => {
       it('returns an empty array', async () => {
@@ -16,12 +24,18 @@ describe('Testing NewsletterRepository', () => {
     });
 
     describe('when there are subscribers', () => {
+      beforeAll(() =>
+        Promise.all([
+          NewsletterModel.create({ email: 'john.doe@email.com' }),
+          NewsletterModel.create({ email: 'jane.doe@email.net' }),
+          NewsletterModel.create({ email: 'dev.test@domain.com' })
+        ])
+      );
+
+      afterAll(() => NewsletterModel.deleteMany({}));
+
       it('returns an array of the newsletter subscribers', async () => {
         const repository = new NewsletterRepository();
-
-        await repository.create('john.doe@email.com');
-        await repository.create('jane.doe@email.net');
-        await repository.create('dev.test@domain.com');
 
         const subscribers = await repository.fetchAll();
 
@@ -31,6 +45,8 @@ describe('Testing NewsletterRepository', () => {
   });
 
   describe('.create', () => {
+    afterAll(() => NewsletterModel.deleteMany({}));
+
     describe('when no email is provided', () => {
       it('throws and ValidationError', async () => {
         const repository = new NewsletterRepository();
@@ -38,7 +54,7 @@ describe('Testing NewsletterRepository', () => {
         try {
           await repository.create();
         } catch (e) {
-          expect(e instanceof Error.ValidationError).toBeTruthy();
+          expect(e instanceof mongoose.Error.ValidationError).toBeTruthy();
         }
       });
     });

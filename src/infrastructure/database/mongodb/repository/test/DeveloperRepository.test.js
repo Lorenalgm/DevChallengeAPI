@@ -1,11 +1,19 @@
-const { Types, Error } = require('mongoose');
+const mongoose = require('mongoose');
 
 const DeveloperRepository = require('../DeveloperRepository');
 const Developer = require('../../../../../domain/Developer');
-
-require('./setupTests');
+const DeveloperModel = require('../../schemas/Dev');
 
 describe('Testing DeveloperRepository', () => {
+  beforeAll(() =>
+    mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+  );
+
+  afterAll(() => mongoose.connection.close());
+
   const developerMock = new Developer({
     name: 'John Doe',
     position: 'QA',
@@ -26,12 +34,18 @@ describe('Testing DeveloperRepository', () => {
     });
 
     describe('when there are developers registered', () => {
+      beforeAll(() =>
+        Promise.all([
+          DeveloperModel.create(developerMock),
+          DeveloperModel.create(developerMock),
+          DeveloperModel.create(developerMock)
+        ])
+      );
+
+      afterAll(() => DeveloperModel.deleteMany({}));
+
       it('returns the registered developers', async () => {
         const repository = new DeveloperRepository();
-
-        await repository.create(developerMock);
-        await repository.create(developerMock);
-        await repository.create(developerMock);
 
         const devs = await repository.fetchAll();
 
@@ -57,7 +71,7 @@ describe('Testing DeveloperRepository', () => {
         try {
           await repository.fetchById();
         } catch (e) {
-          expect(e instanceof Error.CastError).toBeTruthy();
+          expect(e instanceof mongoose.Error.CastError).toBeTruthy();
         }
       });
     });
@@ -66,7 +80,7 @@ describe('Testing DeveloperRepository', () => {
       describe('and the id does not corresponds to a developer', () => {
         it('returns null', async () => {
           const repository = new DeveloperRepository();
-          const dev = await repository.fetchById(Types.ObjectId());
+          const dev = await repository.fetchById(mongoose.Types.ObjectId());
 
           expect(dev).toBeNull();
         });
@@ -76,7 +90,7 @@ describe('Testing DeveloperRepository', () => {
         it('returns a single developer object', async () => {
           const repository = new DeveloperRepository();
 
-          const { _id: devId } = await repository.create(developerMock);
+          const { _id: devId } = await DeveloperModel.create(developerMock);
 
           const developer = await repository.fetchById(devId);
 
@@ -97,6 +111,8 @@ describe('Testing DeveloperRepository', () => {
   });
 
   describe('.create', () => {
+    afterAll(() => DeveloperModel.deleteMany({}));
+
     describe('when a invalid developer object is passed', () => {
       it('throws an ValidationError', async () => {
         const repository = new DeveloperRepository();
@@ -104,7 +120,7 @@ describe('Testing DeveloperRepository', () => {
         try {
           await repository.create();
         } catch (e) {
-          expect(e instanceof Error.ValidationError).toBeTruthy();
+          expect(e instanceof mongoose.Error.ValidationError).toBeTruthy();
         }
       });
     });
