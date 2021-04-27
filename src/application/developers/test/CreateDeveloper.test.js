@@ -1,19 +1,11 @@
-const mongoose = require('mongoose');
-
 const CreateDeveloper = require('../CreateDeveloper');
 const DeveloperRepository = require('../../../infrastructure/database/mongodb/repository/DeveloperRepository');
-const DeveloperModel = require('../../../infrastructure/database/mongodb/schemas/Dev');
+
+jest.mock(
+  '../../../infrastructure/database/mongodb/repository/DeveloperRepository'
+);
 
 describe('Testing CreateDeveloper Use Case', () => {
-  beforeAll(() =>
-    mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-  );
-
-  afterAll(() => mongoose.connection.close());
-
   const developerMock = {
     name: 'John Doe',
     position: 'QA',
@@ -36,14 +28,11 @@ describe('Testing CreateDeveloper Use Case', () => {
   });
 
   describe('when the repository depependency is present', () => {
-    afterAll(() => DeveloperModel.deleteMany({}));
-
     it('calls DeveloperRepository.create', async () => {
       const repository = new DeveloperRepository();
-      const spy = jest.spyOn(repository, 'create');
       await new CreateDeveloper(repository).run(developerMock);
 
-      expect(spy).toHaveBeenCalled();
+      expect(repository.create).toHaveBeenCalled();
     });
   });
 });
