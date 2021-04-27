@@ -1,19 +1,13 @@
-const mongoose = require('mongoose');
+const { Types } = require('mongoose');
 
 const CreateChallenge = require('../CreateChallenge');
 const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongodb/repository/ChallengeRepository');
-const ChallengeModel = require('../../../infrastructure/database/mongodb/schemas/Challenge');
+
+jest.mock(
+  '../../../infrastructure/database/mongodb/repository/ChallengeRepository'
+);
 
 describe('Testing CreateChallenge Use Case', () => {
-  beforeAll(() =>
-    mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-  );
-
-  afterAll(() => mongoose.connection.close());
-
   const challenge = {
     type: 'Frontend',
     name: 'placeholder',
@@ -24,7 +18,7 @@ describe('Testing CreateChallenge Use Case', () => {
     images: ['placeholder'],
     github_url: 'placeholder',
     brief: 'placeholder',
-    dev_id: mongoose.Types.ObjectId()
+    dev_id: Types.ObjectId()
   };
 
   describe('if the repository dependency is not present', () => {
@@ -40,14 +34,11 @@ describe('Testing CreateChallenge Use Case', () => {
   });
 
   describe('if the repository dependency is present', () => {
-    afterAll(() => ChallengeModel.deleteMany({}));
-
     it('calls ChallengeRepositoryMongo.create', async () => {
       const repository = new ChallengeRepositoryMongo();
-      const spy = jest.spyOn(repository, 'create');
       await new CreateChallenge(repository).run(challenge);
 
-      expect(spy).toHaveBeenCalled();
+      expect(repository.create).toHaveBeenCalled();
     });
   });
 });
