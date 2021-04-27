@@ -1,9 +1,7 @@
 const ListSubscribers = require('../ListSubscribers');
-const NewsletterRepository = require('../../../infrastructure/database/mongodb/repository/NewsletterRepository');
+const NewsletterRepository = require('../../../domain/NewsletterRepository');
 
-jest.mock(
-  '../../../infrastructure/database/mongodb/repository/NewsletterRepository'
-);
+jest.mock('../../../domain/NewsletterRepository');
 
 describe('Testing ListSubscribers Use Case', () => {
   describe('when the repository dependency is not present', () => {

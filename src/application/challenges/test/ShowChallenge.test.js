@@ -1,9 +1,7 @@
 const ShowChallenge = require('../ShowChallenge');
-const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongodb/repository/ChallengeRepository');
+const ChallengeRepositoryMongo = require('../../../domain/ChallengeRepository');
 
-jest.mock(
-  '../../../infrastructure/database/mongodb/repository/ChallengeRepository'
-);
+jest.mock('../../../domain/ChallengeRepository');
 
 describe('Testing ShowChallenge Use Case', () => {
   describe('when the repository dependency is not present', () => {

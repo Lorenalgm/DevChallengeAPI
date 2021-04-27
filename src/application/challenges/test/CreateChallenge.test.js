@@ -1,11 +1,9 @@
 const { Types } = require('mongoose');
 
 const CreateChallenge = require('../CreateChallenge');
-const ChallengeRepositoryMongo = require('../../../infrastructure/database/mongodb/repository/ChallengeRepository');
+const ChallengeRepositoryMongo = require('../../../domain/ChallengeRepository');
 
-jest.mock(
-  '../../../infrastructure/database/mongodb/repository/ChallengeRepository'
-);
+jest.mock('../../../domain/ChallengeRepository');
 
 describe('Testing CreateChallenge Use Case', () => {
   const challenge = {

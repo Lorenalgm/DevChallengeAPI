@@ -1,9 +1,7 @@
 const CreateDeveloper = require('../CreateDeveloper');
-const DeveloperRepository = require('../../../infrastructure/database/mongodb/repository/DeveloperRepository');
+const DeveloperRepository = require('../../../domain/DeveloperRepository');
 
-jest.mock(
-  '../../../infrastructure/database/mongodb/repository/DeveloperRepository'
-);
+jest.mock('../../../domain/DeveloperRepository');
 
 describe('Testing CreateDeveloper Use Case', () => {
   const developerMock = {

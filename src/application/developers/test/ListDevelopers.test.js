@@ -1,9 +1,7 @@
 const ListDevelopers = require('../ListDevelopers');
-const DeveloperRepository = require('../../../infrastructure/database/mongodb/repository/DeveloperRepository');
+const DeveloperRepository = require('../../../domain/DeveloperRepository');
 
-jest.mock(
-  '../../../infrastructure/database/mongodb/repository/DeveloperRepository'
-);
+jest.mock('../../../domain/DeveloperRepository');
 
 describe('Testing CreateDeveloper Use Case', () => {
   describe('when the repository dependency is not present', () => {
