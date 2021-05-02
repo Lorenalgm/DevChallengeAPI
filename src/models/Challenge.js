@@ -14,7 +14,9 @@ const ChallengeSchema = new mongoose.Schema(
     dev_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Dev'
-    }
+    },
+    total: Number,
+    week_total: Number
   },
   {
     timestamps: true
