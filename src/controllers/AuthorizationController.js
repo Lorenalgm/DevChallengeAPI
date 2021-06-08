@@ -12,12 +12,6 @@ class AuthorizationController {
     this.scope = 'read:user';
   }
 
-  async getAuthorizationCode(_request, response) {
-    response.redirect(
-      `https://github.com/login/oauth/authorize?client_id=${this.clientId}&scope=${this.scope}`
-    );
-  }
-
   async getAccessToken(request, _response, next) {
     const url = 'https://github.com/login/oauth/access_token';
     const body = {
