@@ -17,6 +17,8 @@ function boot(app) {
 
   app.use(routeNotFound);
   app.use(errorHandler);
+
+  console.log('initializated...');
 }
 
 module.exports = boot;
