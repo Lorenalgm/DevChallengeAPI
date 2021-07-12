@@ -10,8 +10,8 @@ authRouter.get(
     authorizationController.getAccessToken(request, response, next),
   (request, response, next) =>
     authorizationController.getUserProfile(request, response, next),
-  (request, response, next) =>
-    authorizationController.handleUser(request, response, next),
+  // (request, response, next) =>
+  //   authorizationController.handleUser(request, response, next),
   (_request, response) =>
     response.redirect('https://www.devchallenge.com.br/dashboard')
 );
