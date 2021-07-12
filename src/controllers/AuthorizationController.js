@@ -20,26 +20,40 @@ class AuthorizationController {
       code: request.query.code
     };
 
-    const opts = { headers: { accept: 'application/json' } };
+    const opts = {
+      headers: {
+        // prettier-disable-next-line
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
 
-    const {
-      data: { access_token: accessToken }
-    } = await axios.post(url, body, opts);
+    const { data } = await axios.post(url, body, opts);
 
-    request.user = { accessToken };
+    if (data.error) {
+      _response.status(400).json(data);
+      return;
+    }
+
+    request.user = data.access_token;
 
     next();
   }
 
   // eslint-disable-next-line class-methods-use-this
   async getUserProfile(request, _response, next) {
-    const { accessToken } = request.user;
+    const accessToken = request.user;
 
-    const { data: profile } = await axios.get(`https://api.github.com/user`, {
-      headers: { authorization: `token ${accessToken}` }
-    });
+    try {
+      const { data: profile } = await axios.get(`https://api.github.com/user`, {
+        headers: { Authorization: `token ${accessToken}` }
+      });
+      request.user = { profile };
+    } catch (e) {
+      _response.status(500).json(e);
+      return;
+    }
 
-    request.user = { profile };
     delete request.user.accessToken;
 
     next();
@@ -76,7 +90,7 @@ class AuthorizationController {
 
     const authenticateDev = new AuthenticateDevService();
 
-    const data = await authenticateDev.execute(request.user.email);
+    const data = await authenticateDev.execute(githubId);
 
     response.json({
       user: data.dev,

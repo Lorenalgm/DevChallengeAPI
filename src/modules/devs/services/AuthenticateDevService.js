@@ -5,8 +5,8 @@ const authConfig = require('../../../config/auth');
 
 class AuthenticateDevService {
   // eslint-disable-next-line class-methods-use-this
-  async execute(email) {
-    const dev = await devServices.fetchByEmail(email);
+  async execute(githubId) {
+    const dev = await devServices.fetchByGitHubId(githubId);
 
     if (!dev) {
       throw new Error('dev does not exist.');
