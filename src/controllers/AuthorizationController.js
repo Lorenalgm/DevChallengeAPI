@@ -20,6 +20,8 @@ class AuthorizationController {
       code: request.query.code
     };
 
+    console.log('teste');
+
     const opts = {
       headers: {
         // prettier-disable-next-line
@@ -43,6 +45,7 @@ class AuthorizationController {
   // eslint-disable-next-line class-methods-use-this
   async getUserProfile(request, _response, next) {
     const accessToken = request.user;
+    console.log('teste1');
 
     try {
       const { data: profile } = await axios.get(`https://api.github.com/user`, {
@@ -68,6 +71,8 @@ class AuthorizationController {
       id: githubId,
       avatar_url: avatar
     } = request.user.profile;
+
+    console.log('teste2');
 
     delete request.user.profile;
 
