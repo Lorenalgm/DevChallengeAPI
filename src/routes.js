@@ -19,4 +19,8 @@ routes.post('/devs', DevController.store);
 routes.get('/newsletter', NewsletterController.index);
 routes.post('/newsletter', NewsletterController.store);
 
+routes.get('/', (_req, res) => {
+  res.json({ Success: 'Api restful running...' });
+});
+
 module.exports = routes;
