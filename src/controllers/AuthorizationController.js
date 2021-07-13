@@ -22,16 +22,21 @@ class AuthorizationController {
 
     console.log('teste');
 
-    const opts = {
-      headers: {
-        // prettier-disable-next-line
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
+    const headers = {
+      // prettier-disable-next-line
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
     };
 
     try {
-      const { data } = await axios.post(url, body, opts);
+      // const { data } = await axios.post(url, body, opts);
+
+      const { data } = await axios({
+        method: 'POST',
+        url,
+        data: body,
+        headers
+      });
 
       if (data.error) {
         _response.status(400).json(data);
