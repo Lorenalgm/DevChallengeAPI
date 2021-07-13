@@ -30,10 +30,16 @@ class AuthorizationController {
       }
     };
 
-    const { data } = await axios.post(url, body, opts);
+    try {
+      const { data } = await axios.post(url, body, opts);
 
-    if (data.error) {
-      _response.status(400).json(data);
+      if (data.error) {
+        _response.status(400).json(data);
+        return;
+      }
+    } catch (e) {
+      console.log(e);
+      _response.status(500).json(e);
       return;
     }
 
