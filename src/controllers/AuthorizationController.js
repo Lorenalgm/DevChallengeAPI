@@ -34,7 +34,11 @@ class AuthorizationController {
       const { data } = await axios({
         method: 'POST',
         url,
-        data: body,
+        data: {
+          client_secret: '54b7b8f046a03fa837f5db9581ebd568ff1544e0',
+          client_id: '5023286bf1948ac05f6b',
+          code: 'ddcfa693c9491149238f'
+        },
         headers
       });
 
