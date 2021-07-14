@@ -1,87 +1,34 @@
-const axios = require('axios');
-
 const devsService = require('../services/devs.service');
 const AuthenticateDevService = require('../modules/devs/services/AuthenticateDevService');
 
 const authConfig = require('../config/auth');
+const GithubService = require('../services/github.service');
 
 class AuthorizationController {
   constructor() {
     this.clientId = authConfig.oauth2.github.clientId;
     this.secretId = authConfig.oauth2.github.secretId;
     this.scope = 'read:user';
+
+    this.githubService = new GithubService();
   }
 
-  async getAccessToken(request, _response, next) {
-    const url = 'https://github.com/login/oauth/access_token';
-    const body = {
-      client_id: this.clientId,
-      client_secret: this.secretId,
-      code: request.query.code
-    };
+  async authenticateUser(request, response) {
+    const token = await this.githubService.getAccessToken(request.query.code);
 
-    console.log('teste');
-
-    const headers = {
-      // prettier-disable-next-line
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    };
-
-    try {
-      const { data } = await axios.post(
-        url,
-        {
-          client_secret: body.client_secret,
-          client_id: body.client_id,
-          code: body.code
-        },
-        headers
-      );
-
-      // const { data } = await axios({
-      //   method: 'POST',
-      //   url,
-      //   data: body,
-      //   headers
-      // });
-
-      if (data.error) {
-        _response.status(400).json(data);
-        return;
-      }
-
-      request.user = data.access_token;
-    } catch (e) {
-      console.log(e);
-      _response.status(500).json(e);
+    if (token.error) {
+      response.send(token);
       return;
     }
 
-    next();
+    const userProfile = await this.githubService.getUserProfile(
+      token.access_token
+    );
+
+    response.send(userProfile);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  async getUserProfile(request, _response, next) {
-    const accessToken = request.user;
-    console.log('teste1');
-
-    try {
-      const { data: profile } = await axios.get(`https://api.github.com/user`, {
-        headers: { Authorization: `token ${accessToken}` }
-      });
-      request.user = { profile };
-    } catch (e) {
-      _response.status(500).json(e);
-      return;
-    }
-
-    delete request.user.accessToken;
-
-    next();
-  }
-
-  // eslint-disable-next-line class-methods-use-this
+  // // eslint-disable-next-line class-methods-use-this
   async handleUser(request, response) {
     const {
       name,
@@ -90,8 +37,6 @@ class AuthorizationController {
       id: githubId,
       avatar_url: avatar
     } = request.user.profile;
-
-    console.log('teste2');
 
     delete request.user.profile;
 
