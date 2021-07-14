@@ -29,30 +29,34 @@ class AuthorizationController {
     };
 
     try {
-      // const { data } = await axios.post(url, body, opts);
-
-      const { data } = await axios({
-        method: 'POST',
+      const { data } = await axios.post(
         url,
-        data: {
-          client_secret: '54b7b8f046a03fa837f5db9581ebd568ff1544e0',
-          client_id: '5023286bf1948ac05f6b',
-          code: 'ddcfa693c9491149238f'
+        {
+          client_secret: body.client_secret,
+          client_id: body.client_id,
+          code: body.code
         },
         headers
-      });
+      );
+
+      // const { data } = await axios({
+      //   method: 'POST',
+      //   url,
+      //   data: body,
+      //   headers
+      // });
 
       if (data.error) {
         _response.status(400).json(data);
         return;
       }
+
+      request.user = data.access_token;
     } catch (e) {
       console.log(e);
       _response.status(500).json(e);
       return;
     }
-
-    request.user = data.access_token;
 
     next();
   }
