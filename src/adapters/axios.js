@@ -15,10 +15,12 @@ const axiosAdapter = configs => {
 
         case 400:
           settle(resolve, reject, badRequest(response.data));
+          break;
 
         case 500:
         case 503:
           settle(resolve, reject, internalError(response.data));
+          break;
 
         default:
           break;

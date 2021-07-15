@@ -16,10 +16,14 @@ class AuthorizationController {
   async authenticateUser(request, response) {
     const token = await this.githubService.getAccessToken(request.query.code);
 
+    console.log(token);
+
     if (token.error) {
       response.send(token);
       return;
     }
+
+    console.log(token);
 
     const userProfile = await this.githubService.getUserProfile(
       token.access_token
