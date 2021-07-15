@@ -1,19 +1,14 @@
 const devsService = require('../services/devs.service');
 const AuthenticateDevService = require('../modules/devs/services/AuthenticateDevService');
 
-const authConfig = require('../config/auth');
 const GithubService = require('../services/github.service');
 
 class AuthorizationController {
   constructor() {
-    this.clientId = authConfig.oauth2.github.clientId;
-    this.secretId = authConfig.oauth2.github.secretId;
-    this.scope = 'read:user';
-
     this.githubService = new GithubService();
   }
 
-  async authenticateUser(request, response) {
+  async authenticateUser(request, response, next) {
     const token = await this.githubService.getAccessToken(request.query.code);
 
     console.log(token);
@@ -29,7 +24,10 @@ class AuthorizationController {
       token.access_token
     );
 
-    response.send(userProfile);
+    request.user = userProfile;
+
+    // response.send(userProfile);
+    next();
   }
 
   // // eslint-disable-next-line class-methods-use-this
@@ -40,9 +38,9 @@ class AuthorizationController {
       html_url: github,
       id: githubId,
       avatar_url: avatar
-    } = request.user.profile;
+    } = request.user;
 
-    delete request.user.profile;
+    delete request.user;
 
     const existingDev = await devsService.fetchByGitHubId(githubId);
 

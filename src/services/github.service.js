@@ -1,5 +1,4 @@
 const { oauth2 } = require('../config/auth');
-// import { badRequest, internalError, ok } from '../contracts/http-response';
 
 const customAxios = require('../config/customAxios');
 const { badRequest } = require('../contracts/http-response');
@@ -18,7 +17,6 @@ module.exports = class GithubService {
       'Content-Type': 'application/json'
     };
 
-    console.log(body);
     try {
       const { data } = await customAxios({
         method: 'POST',

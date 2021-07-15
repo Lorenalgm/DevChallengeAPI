@@ -7,13 +7,13 @@ const authorizationController = new AuthorizationController();
 authRouter.get(
   '/github/callback',
   (request, response, next) =>
-    authorizationController.authenticateUser(request, response)
+    authorizationController.authenticateUser(request, response, next),
   // (request, response, next) =>
   //   authorizationController.getUserProfile(request, response, next),
-  // (request, response, next) =>
-  //   authorizationController.handleUser(request, response, next),
-  // (_request, response) =>
-  //   response.redirect('https://www.devchallenge.com.br/dashboard')
+  (request, response, next) =>
+    authorizationController.handleUser(request, response, next),
+  (_request, response) =>
+    response.redirect('https://www.devchallenge.com.br/dashboard')
 );
 
 module.exports = authRouter;
