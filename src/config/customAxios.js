@@ -3,4 +3,9 @@ const axios = require('axios');
 const { axiosAdapter } = require('../adapters/axios');
 
 const customAxios = axios.create({ adapter: axiosAdapter });
-module.exports = customAxios;
+const githubApi = axios.create({
+  adapter: axiosAdapter,
+  baseUrl: 'https://api.github.com'
+});
+
+module.exports = { axios: customAxios, githubApi };
