@@ -8,12 +8,12 @@ authRouter.get(
   '/github/callback',
   (request, response, next) =>
     authorizationController.authenticateUser(request, response, next),
-  // (request, response, next) =>
-  //   authorizationController.getUserProfile(request, response, next),
   (request, response, next) =>
-    authorizationController.handleUser(request, response, next),
-  (_request, response) =>
-    response.redirect('https://www.devchallenge.com.br/dashboard')
+    authorizationController.handleUserData(request, response, next),
+  (request, response) =>
+    response.redirect(
+      `https://www.devchallenge.com.br/dashboard?token=${request.token}`
+    )
 );
 
 module.exports = authRouter;

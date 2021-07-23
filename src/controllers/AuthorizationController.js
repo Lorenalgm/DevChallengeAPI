@@ -3,6 +3,8 @@ const AuthenticateDevService = require('../modules/devs/services/AuthenticateDev
 
 const GithubService = require('../services/github.service');
 
+const { badRequest } = require('../contracts/http-response');
+
 class AuthorizationController {
   constructor() {
     this.githubService = new GithubService();
@@ -11,62 +13,51 @@ class AuthorizationController {
   async authenticateUser(request, response, next) {
     const token = await this.githubService.getAccessToken(request.query.code);
 
-    console.log(token);
-
     if (token.error) {
       response.send(token);
       return;
     }
 
-    console.log(token);
-
-    const userProfile = await this.githubService.getUserProfile(
-      token.access_token
-    );
-
-    request.user = userProfile;
-
-    // response.send(userProfile);
+    request.access_token = token.data;
     next();
   }
 
   // // eslint-disable-next-line class-methods-use-this
-  async handleUser(request, response) {
-    const {
-      name,
-      email,
-      html_url: github,
-      id: githubId,
-      avatar_url: avatar
-    } = request.user;
+  async handleUserData(request, _response, next) {
+    const { access_token: accessToken } = request;
 
-    delete request.user;
+    delete request.access_token;
 
-    const existingDev = await devsService.fetchByGitHubId(githubId);
+    const userPrimaryEmail = await this.githubService.getUserPrimaryEmail(
+      accessToken
+    );
+    const existingDev = await devsService.fetchByEmail(userPrimaryEmail);
 
-    if (existingDev) {
-      // update existing dev's avatar
-      request.user.email = existingDev.email;
-    } else {
-      // check if there is an existing dev with the same email to merge accounts
-      const newDev = await devsService.create({
+    if (!existingDev) {
+      const {
         name,
-        email,
+        github,
+        githubId,
+        avatar
+      } = this.githubService.getUserProfile(accessToken);
+
+      await devsService.create({
+        name,
+        email: userPrimaryEmail,
         github,
         githubId,
         avatar
       });
-      request.user.email = newDev.email;
     }
 
     const authenticateDev = new AuthenticateDevService();
-
-    const data = await authenticateDev.execute(githubId);
-
-    response.json({
-      user: data.dev,
-      token: data.token
-    });
+    try {
+      const token = await authenticateDev.execute(userPrimaryEmail);
+      request.token = token;
+      next();
+    } catch (e) {
+      request.send(badRequest(e));
+    }
   }
 }
 

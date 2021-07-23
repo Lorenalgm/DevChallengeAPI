@@ -27,4 +27,19 @@ async function create(devData) {
   return Dev.create(devData);
 }
 
-module.exports = { fetchAll, fetchById, fetchByGitHubId, fetchByEmail, create };
+async function update(devData) {
+  const devFounded = await Dev.findById(devData.id);
+
+  if (devFounded) {
+    await devFounded.update(devData);
+  }
+}
+
+module.exports = {
+  fetchAll,
+  fetchById,
+  fetchByGitHubId,
+  fetchByEmail,
+  create,
+  update
+};

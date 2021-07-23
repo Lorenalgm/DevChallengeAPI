@@ -1,9 +1,9 @@
 const { oauth2 } = require('../config/auth');
 
-const customAxios = require('../config/customAxios');
+const { axios, githubAxios } = require('../config/customAxios');
 const { badRequest } = require('../contracts/http-response');
 
-module.exports = class GithubService {
+class GithubService {
   getAccessToken = async temporaryCode => {
     const url = 'https://github.com/login/oauth/access_token';
     const body = {
@@ -18,7 +18,7 @@ module.exports = class GithubService {
     };
 
     try {
-      const { data } = await customAxios({
+      const { data } = await axios({
         method: 'POST',
         url,
         headers,
@@ -31,10 +31,24 @@ module.exports = class GithubService {
   };
 
   getUserProfile = async access_token => {
-    const { data } = await customAxios.get(`https://api.github.com/user`, {
-      headers: { Authorization: `token ${access_token}` }
+    const { data } = await githubAxios.get(`/user`, {
+      headers: { Authorization: `bearer ${access_token}` }
     });
 
     return data;
   };
-};
+
+  getUserPrimaryEmail = async access_token => {
+    const { data } = await githubAxios.get('/user/emails', {
+      headers: {
+        Authorization: `bearer ${access_token}`
+      }
+    });
+
+    const currentEmail = data.find(currentEmail => currentEmail.primary);
+
+    return currentEmail;
+  };
+}
+
+module.exports = GithubService;
