@@ -1,6 +1,6 @@
 const { oauth2 } = require('../config/auth');
 
-const { axios, githubAxios } = require('../config/customAxios');
+const { axios, githubAxiosApi } = require('../config/customAxios');
 const { badRequest } = require('../contracts/http-response');
 
 class GithubService {
@@ -31,7 +31,7 @@ class GithubService {
   };
 
   getUserProfile = async access_token => {
-    const { data } = await githubAxios.get(`/user`, {
+    const { data } = await githubAxiosApi.get(`/user`, {
       headers: { Authorization: `bearer ${access_token}` }
     });
 
@@ -39,7 +39,7 @@ class GithubService {
   };
 
   getUserPrimaryEmail = async access_token => {
-    const { data } = await githubAxios.get('/user/emails', {
+    const { data } = await githubAxiosApi.get('/user/emails', {
       headers: {
         Authorization: `bearer ${access_token}`
       }
