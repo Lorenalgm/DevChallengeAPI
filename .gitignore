@@ -1,5 +1,7 @@
 node_modules/
 yarn.lock
 package-lock.json
+.env.development
+.env.test
 .env
 tmp
