@@ -1,4 +1,3 @@
-
 <div align="center">
   <a href="https://devchallenge.now.sh/">
     <img src="https://trello-attachments.s3.amazonaws.com/590fa896d2d25e50583de620/500x500/0bdcc819ea145cb0167619c6d00f2174/D.png" alt="Logo" width="100" height="100">
@@ -110,7 +109,7 @@ Gostaria de contribuir com o projeto? Acesse [CONTRIBUTING.md](CONTRIBUTING.md) 
 
 ## Autores
 
-- **Lorena Montes** - *Trabalho inicial* - [Lorenalgm](https://github.com/Lorenalgm)
+- **Lorena Montes** - _Trabalho inicial_ - [Lorenalgm](https://github.com/Lorenalgm)
 
 Veja também a lista de [contribuidores](https://devchallenge.now.sh/devs) que ajudaram no projeto!
 
@@ -128,4 +127,3 @@ Nosso objetivo é ajudar cada vez mais na evolução de desenvolvedores! Por iss
 [stars-url]: https://github.com/Lorenalgm/DevChallengeAPI/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Lorenalgm/DevChallengeAPI.svg?style=flat-square
 [issues-url]: https://github.com/Lorenalgm/DevChallengeAPI/issues
-

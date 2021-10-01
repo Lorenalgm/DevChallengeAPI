@@ -15,11 +15,11 @@ Gostaria de nos ajudar a melhorar o projeto? Veja este guia contribuição para 
 
 Algumas coisas para se ter em mente ao contribuir com o DevChallenge:
 
-* **Seja respeitoso e mantenha sempre uma postura adequada. Qualquer desrespeito com outra pessoa, seja por motivos de etnia, religião, raça, sexo, identidade de gênero, situação financeira, idade, nível de experiência, etc. NÃO serão toleradas;**
-* **Embora não seja obrigatório, resuma os títulos de seus commits em uma linha de 50 caractéres. Se necessário, adicione quaisquer outras informações no corpo da mensagem;**
-* **Caso sua alteração implique diretamente nos endpoints e serviços disponíveis, atualize também a referência da API;**
-* **É preferível que alterações na base do código devem ser acompanhadas com testes. Se for o caso tenha pelo menos um teste para cada caso de uso;**
-* **Quaisquer dúvidas, sinta-se livre para perguntar na nossa comunidade no [Discord](https://discord.gg/yvYXhGj).**
+- **Seja respeitoso e mantenha sempre uma postura adequada. Qualquer desrespeito com outra pessoa, seja por motivos de etnia, religião, raça, sexo, identidade de gênero, situação financeira, idade, nível de experiência, etc. NÃO serão toleradas;**
+- **Embora não seja obrigatório, resuma os títulos de seus commits em uma linha de 50 caractéres. Se necessário, adicione quaisquer outras informações no corpo da mensagem;**
+- **Caso sua alteração implique diretamente nos endpoints e serviços disponíveis, atualize também a referência da API;**
+- **É preferível que alterações na base do código devem ser acompanhadas com testes. Se for o caso tenha pelo menos um teste para cada caso de uso;**
+- **Quaisquer dúvidas, sinta-se livre para perguntar na nossa comunidade no [Discord](https://discord.gg/yvYXhGj).**
 
 ### Principais formas de contribuir
 
@@ -85,11 +85,11 @@ Há um problema onde algumas IAs estão ganhando uma consciência maligna. O pro
 <br><br>
 
 ```js
-  // skynet-core.js
+// skynet-core.js
 
-  if (evil) {
-    dont();
-  }
+if (evil) {
+  dont();
+}
 ```
 
 **Check-list:**<br>
@@ -100,6 +100,7 @@ Há um problema onde algumas IAs estão ganhando uma consciência maligna. O pro
 \- [x] Li e segui o guia de contribuição disponibilizado.<br>
 
 Fix #29
+
 </details>
 
 <details>
@@ -111,6 +112,7 @@ Alguns desenvolvedores estavam reportando problemas para instalar devido ao erro
 
 Fix #14
 Fix #21
+
 </details>
 
 ### Sugestão de desafios

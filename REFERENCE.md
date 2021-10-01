@@ -25,10 +25,12 @@ Listar todos desafios; Filtrar desafios por categoria.
 | Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
 |-----------|-----------|-------------------|--------------|------------|
 | `type` | Categoria do desafio | `query` | `String` | Não |
+| `level` | Nível de dificuldade | `query` | `String` | Não |
+| `techs` | Tecnologias recomendadas | `query` | `[String]` | Não |
 
 **URL de Requisição**
 
-> https://devchallengeapi.herokuapp.com/challenges[?type=[challenge_type]]
+> https://devchallengeapi.herokuapp.com/challenges[?type=[challenge_type]&level=[difficulty_level]&techs=[recommended_technologies]]
 
 Retorna um Array dos objetos de desafios.
 

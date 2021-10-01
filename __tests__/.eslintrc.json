@@ -1,12 +1,15 @@
 {
   "env": {
     "es2020": true,
-    "node": true
+    "jest": true
   },
   "extends": ["airbnb-base", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["prettier"]
+  "plugins": ["prettier"],
+  "rules": {
+    "no-undef": "error"
+  }
 }
