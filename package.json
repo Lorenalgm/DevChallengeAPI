@@ -6,10 +6,10 @@
   "main": "src/bin/server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/bin/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/bin/server.js",
     "lint": "eslint src --ext js",
-    "start": "node src/bin/server.js",
-    "test": "NODE_ENV=test jest"
+    "start": "cross-env NODE_ENV=production node src/bin/server.js",
+    "test": "cross-env NODE_ENV=testing jest"
   },
   "dependencies": {
     "cookie-session": "^1.4.0",
@@ -21,6 +21,7 @@
     "passport-github2": "^0.1.12"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",

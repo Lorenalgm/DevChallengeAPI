@@ -1,9 +1,3 @@
-require('dotenv').config({
-  path:
-    process.env.NODE_ENV === 'production'
-      ? '.env'
-      : `.env.${process.env.NODE_ENV}`
-});
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
 const devsService = require('../../services/devs.service');
