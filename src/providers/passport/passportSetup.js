@@ -14,7 +14,7 @@ passport.use(
       // passport callback function
 
       const {
-        username: github,
+        username,
         id: githubId,
         displayName: name,
         emails: [{ value: email }],
@@ -29,7 +29,7 @@ passport.use(
         const newDev = await devsService.create({
           name,
           email,
-          github,
+          username,
           githubId,
           avatar
         });
