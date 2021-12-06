@@ -315,38 +315,53 @@ Retorna objeto contribuidor criado.
 Utilize a API de Newsletter quando quiser assinar ou cancelar uma assinatura semanal.
 
 <details>
-<summary style="font-size:24px;color:black"><b>GET: /newsletter</b></summary>
+<summary style="font-size:24px;color:black"><b>POST: /newsletter</b></summary>
 
 #### Função
 
-Listar assinantes da newsletter.
+Assinar um e-mail na newsletter.
 
 #### Requisição
 
 **Parâmetros**
 | Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
 |-----------|-----------|-------------------|--------------|------------|
-| - | - | - | - | - |
+| `email` | O e-mail a ser assinado | `body` | `String` | Sim |
 
 **URL de Requisição**
 
 > https://devchallengeapi.herokuapp.com/newsletter
 
-Retorna um array de objetos de assinantes
+Retorna um objeto contendo o e-mail registrado.
 
 #### Exemplo de resposta
 
 ```
-[
-  {
-    "_id": String,
-    "email": String,
-    "createdAt": Date,
-    "updatedAt": Date,
-  },
-  {...},
-  {...}
-]
+{
+  "email": "email@devchallenge.com.br"
+}
 ```
+
+</details>
+
+<details>
+<summary style="font-size:24px;color:black"><b>DELETE: /newsletter</b></summary>
+
+#### Função
+
+Cancelar a assinatura de um e-mail na newsletter.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `email` | O e-mail a ser assinado | `body` | `String` | Sim |
+
+**URL de Requisição**
+
+> https://devchallengeapi.herokuapp.com/newsletter
+
+Esse endpoint não retorna nada.
 
 </details>
