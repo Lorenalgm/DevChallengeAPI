@@ -15,6 +15,15 @@ const ChallengeSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Dev'
     },
+    likes_summary: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Dev'
+        }
+      ],
+      max: 5
+    },
     total: Number,
     week_total: Number
   },
@@ -23,4 +32,4 @@ const ChallengeSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Challenge', ChallengeSchema);
+module.exports = mongoose.model('challenge', ChallengeSchema);
