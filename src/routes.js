@@ -20,5 +20,6 @@ routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 
 routes.post('/subscriptions', NewsletterSubscriptionController.store);
+routes.delete('/subscriptions', NewsletterSubscriptionController.delete);
 
 module.exports = routes;

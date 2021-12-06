@@ -9,5 +9,13 @@ module.exports = {
     });
 
     return response.json(subscription);
+  },
+
+  async delete(request, response) {
+    const { email } = request.body;
+
+    await NewsletterSubscription.deleteOne({ email });
+
+    return response.sendStatus(204);
   }
 };
