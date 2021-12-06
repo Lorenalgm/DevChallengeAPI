@@ -15,33 +15,71 @@ describe('Testing NewsletterSubscriptionController', () => {
 
   const email = 'test@devchallenge.com.br';
 
-  it('successfully registers an e-mail', async () => {
-    const result = await request(app).post('/subscriptions').send({ email });
-    const subscription = await NewsletterSubscriptionSchema.findOne({ email });
+  describe('GET: /subscriptions', () => {
+    it('returns the subscription e-mail', async () => {
+      const result = await request(app).post('/subscriptions').send({ email });
+      const subscription = await NewsletterSubscriptionSchema.findOne({
+        email
+      });
 
-    expect(result.statusCode).toBe(201);
-    expect(result.body).toHaveProperty('email', email);
-    expect(subscription.email).toEqual(email);
+      expect(result.statusCode).toBe(201);
+      expect(result.body).toHaveProperty('email', email);
+      expect(subscription.email).toEqual(email);
+    });
+
+    it('returns e-mail when is already subscribed', async () => {
+      await NewsletterSubscriptionSchema.create({ email });
+
+      const result = await request(app).post('/subscriptions').send({ email });
+      const subscriptions = await NewsletterSubscriptionSchema.find({ email });
+
+      expect(result.statusCode).toBe(200);
+      expect(result.body).toHaveProperty('email', email);
+      expect(subscriptions).toHaveLength(1);
+    });
+
+    it('returns an error when body is not present', async () => {
+      const result = await request(app).post('/subscriptions');
+
+      const expected = [{ email: 'This field is required.' }];
+
+      expect(result.statusCode).toBe(400);
+      expect(result.body.errors).toEqual(expected);
+    });
+
+    it('returns an error when e-mail is empty', async () => {
+      const result = await request(app)
+        .post('/subscriptions')
+        .send({ email: ' ' });
+
+      const expected = [{ email: 'This field is required.' }];
+
+      expect(result.statusCode).toBe(400);
+      expect(result.body.errors).toEqual(expected);
+    });
   });
 
-  it('returns e-mail when is already registered', async () => {
-    await NewsletterSubscriptionSchema.create({ email });
+  describe('DELETE: /subscriptions', () => {
+    it('successfully deletes the e-mail from the subscriptions', async () => {
+      await NewsletterSubscriptionSchema.create({ email });
 
-    const result = await request(app).post('/subscriptions').send({ email });
-    const subscriptions = await NewsletterSubscriptionSchema.find({ email });
+      const result = await request(app)
+        .delete('/subscriptions')
+        .send({ email });
+      const subscriptions = await NewsletterSubscriptionSchema.find({ email });
 
-    expect(result.statusCode).toBe(200);
-    expect(result.body).toHaveProperty('email', email);
-    expect(subscriptions).toHaveLength(1);
-  });
+      expect(result.statusCode).toBe(204);
+      expect(subscriptions).toHaveLength(0);
+    });
 
-  it('successfully deletes the e-mail from the subscriptions', async () => {
-    await NewsletterSubscriptionSchema.create({ email });
+    it('returns nothing when the e-mail is not registered', async () => {
+      const result = await request(app)
+        .delete('/subscriptions')
+        .send({ email });
+      const subscriptions = await NewsletterSubscriptionSchema.find({ email });
 
-    const result = await request(app).delete('/subscriptions').send({ email });
-    const subscriptions = await NewsletterSubscriptionSchema.find({ email });
-
-    expect(result.statusCode).toBe(204);
-    expect(subscriptions).toHaveLength(0);
+      expect(result.statusCode).toBe(204);
+      expect(subscriptions).toHaveLength(0);
+    });
   });
 });

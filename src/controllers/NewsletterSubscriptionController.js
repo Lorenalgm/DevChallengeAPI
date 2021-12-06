@@ -1,8 +1,15 @@
 const NewsletterSubscription = require('../models/NewsletterSubscription');
 
 module.exports = {
-  async store(request, response) {
+  async store(request, response, next) {
     const { email } = request.body;
+
+    if (!email || !email.trim()) {
+      return next({
+        status: 400,
+        errors: [{ email: 'This field is required.' }]
+      });
+    }
 
     let subscription = await NewsletterSubscription.findOne({ email });
 
