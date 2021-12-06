@@ -1,9 +1,3 @@
-require('dotenv').config({
-  path:
-    process.env.NODE_ENV === 'production'
-      ? '.env'
-      : `.env.${process.env.NODE_ENV}`
-});
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
 const devsService = require('../../services/devs.service');
@@ -20,7 +14,7 @@ passport.use(
       // passport callback function
 
       const {
-        username: github,
+        username,
         id: githubId,
         displayName: name,
         emails: [{ value: email }],
@@ -35,7 +29,7 @@ passport.use(
         const newDev = await devsService.create({
           name,
           email,
-          github,
+          username,
           githubId,
           avatar
         });

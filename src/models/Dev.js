@@ -5,8 +5,8 @@ const DevSchema = new mongoose.Schema(
     name: String,
     position: String,
     bio: String,
+    username: String,
     linkedin: String,
-    github: String,
     githubId: String,
     avatar: String
   },

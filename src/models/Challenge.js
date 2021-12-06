@@ -23,4 +23,4 @@ const ChallengeSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Challenge', ChallengeSchema);
+module.exports = mongoose.model('challenge', ChallengeSchema);
