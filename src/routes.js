@@ -4,7 +4,7 @@ const profileRoutes = require('./routes/profileRoutes');
 
 const DevController = require('./controllers/DevController');
 const ChallengeController = require('./controllers/ChallengeController');
-const NewsletterController = require('./controllers/NewsletterController');
+const NewsletterSubscriptionController = require('./controllers/NewsletterSubscriptionController');
 
 const routes = express.Router();
 
@@ -19,7 +19,7 @@ routes.patch('/challenges/:challenge_id', ChallengeController.update);
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 
-routes.get('/newsletter', NewsletterController.index);
-routes.post('/newsletter', NewsletterController.store);
+routes.get('/subscriptions', NewsletterSubscriptionController.index);
+routes.post('/subscriptions', NewsletterSubscriptionController.store);
 
 module.exports = routes;
