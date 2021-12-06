@@ -1,32 +1,26 @@
-const request = require('supertest');
-const app = require('../../../src/app');
-
-const { closeConnection } = require('../../helpers/database');
-
-afterAll(async done => {
-  await closeConnection();
-
-  done();
-});
+const routeNotFoundMiddleware = require('../../../src/middlewares/routeNotFound');
 
 describe('Testing route not found middleware', () => {
-  it('should return HTTP status 404 when route does not exists', async done => {
-    const result = await request(app).get('/learton');
+  it('calls `next` with the correct parameters', () => {
+    const params = {
+      req: {
+        method: 'GET',
+        path: '/path'
+      },
+      next: jest.fn()
+    };
 
-    expect(result).toHaveProperty('status');
-    expect(result.status).toBe(404);
-    expect(result.body.message).toBe('Not found.');
+    routeNotFoundMiddleware(params.req, {}, params.next);
 
-    done();
-  });
+    const expected = {
+      status: 404,
+      message: 'Not found.',
+      error: 'Resource not found.',
+      details: {
+        path: expect.any(String)
+      }
+    };
 
-  it('should return HTTP status 404 when method is incorred', async done => {
-    const result = await request(app).put('/newsletter');
-
-    expect(result).toHaveProperty('status');
-    expect(result.status).toBe(404);
-    expect(result.body.message).toBe('Not found.');
-
-    done();
+    expect(params.next).toHaveBeenCalledWith(expected);
   });
 });
