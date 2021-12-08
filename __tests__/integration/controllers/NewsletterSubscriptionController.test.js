@@ -41,7 +41,7 @@ describe('Testing NewsletterSubscriptionController', () => {
     it('returns an error when body is not present', async () => {
       const result = await request(app).post('/subscriptions');
 
-      const expected = [{ email: 'This field is required.' }];
+      const expected = { email: 'This field is required.' };
 
       expect(result.statusCode).toBe(400);
       expect(result.body.errors).toEqual(expected);
@@ -52,7 +52,7 @@ describe('Testing NewsletterSubscriptionController', () => {
         .post('/subscriptions')
         .send({ email: ' ' });
 
-      const expected = [{ email: 'This field is required.' }];
+      const expected = { email: 'This field is required.' };
 
       expect(result.statusCode).toBe(400);
       expect(result.body.errors).toEqual(expected);

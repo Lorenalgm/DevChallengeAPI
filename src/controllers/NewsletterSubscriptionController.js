@@ -7,7 +7,7 @@ module.exports = {
     if (!email || !email.trim()) {
       return next({
         status: 400,
-        errors: [{ email: 'This field is required.' }]
+        errors: { email: 'This field is required.' }
       });
     }
 
