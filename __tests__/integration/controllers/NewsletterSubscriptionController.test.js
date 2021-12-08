@@ -15,8 +15,8 @@ describe('Testing NewsletterSubscriptionController', () => {
 
   const email = 'test@devchallenge.com.br';
 
-  describe('GET: /subscriptions', () => {
-    it('returns the subscription e-mail', async () => {
+  describe('POST: /subscriptions', () => {
+    it('returns the successfully subscribed e-mail', async () => {
       const result = await request(app).post('/subscriptions').send({ email });
       const subscription = await NewsletterSubscriptionSchema.findOne({
         email
