@@ -19,7 +19,7 @@ routes.patch('/challenges/:challenge_id', ChallengeController.update);
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 
-routes.get('/subscriptions', NewsletterSubscriptionController.index);
 routes.post('/subscriptions', NewsletterSubscriptionController.store);
+routes.delete('/subscriptions', NewsletterSubscriptionController.delete);
 
 module.exports = routes;
