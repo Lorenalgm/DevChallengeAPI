@@ -46,17 +46,18 @@ module.exports = {
   },
 
   async update(request, response) {
+    // eslint-disable-next-line camelcase
     const { challenge_id } = request.params;
     const updatedChallenge = request.body;
 
     try {
-      const challenge = await Challenge.findById(challenge_id);
+      const challenge = await challengesService.findById(challenge_id);
 
       if (!challenge) {
         return response.status(404).json({ error: 'Challenge not found.' });
       }
 
-      const challengeSchemaKeys = Object.keys(Challenge.schema.obj);
+      const challengeSchemaKeys = Object.keys(challengesService.schema.obj);
       challengeSchemaKeys.forEach(challengeSchemaKey => {
         if (challengeSchemaKey !== 'dev_id') {
           challenge[challengeSchemaKey] = updatedChallenge[challengeSchemaKey];

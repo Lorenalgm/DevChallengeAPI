@@ -6,7 +6,8 @@ function getFilters(queryString, filtersAllowed) {
     const isPropertyValueValid = !!queryString[property];
     if (isFilterAllowed && isPropertyValueValid)
       return { ...filterPrev, [property]: queryString[property] };
-    else return { ...filterPrev };
+
+    return { ...filterPrev };
   }, {});
 }
 

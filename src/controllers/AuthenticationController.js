@@ -1,36 +1,40 @@
-const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const { fetchByGitHubId, create } = require('../services/devs.service');
+const { requestGithubUserData } = require('../services/github.service');
 
-function login(request, response) {
-  if (!request.user) {
-    response.send('login');
-  } else {
-    response.redirect('/profile');
-  }
-}
+const authConfig = require('../config/authConfig');
 
-function logout(request, response) {
-  request.logout();
-  response.redirect('/');
-}
-
-function oAuthGitHubAuthorization() {
-  return passport.authenticate('github', {
-    scope: ['read:user']
+const generateToken = (params = {}) => {
+  return jwt.sign(params, authConfig.secret, {
+    expiresIn: 86400 // 1 day in seconds
   });
-}
-
-function oAuthGitHubRequestUserData() {
-  return passport.authenticate('github');
-}
-
-function oAuthCallbackRedirect(request, response) {
-  response.redirect('/profile');
-}
+};
 
 module.exports = {
-  login,
-  logout,
-  oAuthGitHubAuthorization,
-  oAuthGitHubRequestUserData,
-  oAuthCallbackRedirect
+  // Keep the login and logout functions on client side
+  // by set token on localStorage or remove it
+  async oAuthGitHub(request, response) {
+    const { code } = request.params;
+    if (!code)
+      return response.status(400).json({ error: 'Code param is required' });
+
+    const userData = await requestGithubUserData(code);
+    if (!userData) {
+      return response.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const existingUser = await fetchByGitHubId(userData.githubId);
+    if (existingUser) {
+      return response.status(200).json({
+        userData,
+        token: generateToken({ id: userData.githubId })
+      });
+    }
+
+    await create(userData);
+    return response.status(201).send({
+      userData,
+      token: generateToken({ id: userData.githubId })
+    });
+  }
 };

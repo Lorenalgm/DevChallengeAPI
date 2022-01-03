@@ -8,15 +8,8 @@ module.exports = {
   },
 
   async store(request, response) {
-    const {
-      name,
-      position,
-      bio,
-      linkedin,
-      github,
-      githubId,
-      avatar
-    } = request.body;
+    const { name, position, bio, linkedin, github, githubId, avatar } =
+      request.body;
 
     const dev = await devsService.create({
       name,
