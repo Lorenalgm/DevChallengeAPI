@@ -6,9 +6,9 @@ const ChallengeDevSchema = new mongoose.Schema(
     end_date: Date,
     solution_url: String,
     challenge_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Challenge'
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Challenge'
+    },
     dev_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Dev'
