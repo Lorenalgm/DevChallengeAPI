@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 
 const cookieSession = require('cookie-session');
-const passport = require('passport');
 
 const routes = require('../../routes');
 
@@ -10,7 +9,7 @@ const errorHandler = require('../../middlewares/errorHandler');
 const routeNotFound = require('../../middlewares/routeNotFound');
 
 /**
- * Express app bootloader
+ * Express app boot loader
  */
 function boot(app) {
   app.use(cors());
@@ -22,9 +21,6 @@ function boot(app) {
       keys: [process.env.PASSPORT_SESSION_COOKIE_KEY]
     })
   );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   app.use(routes);
 

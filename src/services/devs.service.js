@@ -1,15 +1,18 @@
 const Dev = require('../models/Dev');
 
 async function fetchAll() {
-  return Dev.find({});
+  const devs = Dev.find({});
+  return devs;
 }
 
 async function fetchById(devId) {
-  return Dev.findById(devId);
+  const dev = await Dev.findById(devId);
+  return dev;
 }
 
 async function fetchByGitHubId(githubId) {
-  return Dev.findOne({ githubId });
+  const dev = await Dev.findOne({ githubId });
+  return dev;
 }
 
 async function create(devData) {
