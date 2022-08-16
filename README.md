@@ -7,7 +7,7 @@
   <p><b>Melhore suas habilidades através de desafios de front-end, back-end e mobile!</b></p>
   <sub>Procurando pelo repositório do aplicativo web? Acesse <a href="https://github.com/Lorenalgm/DevChallenge">aqui</a>!</sub>
   <br>
-</div>
+</div> 
 
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
